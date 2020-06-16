@@ -11,7 +11,7 @@ public:
     Player(){
         sprite = AddComponent<SimpleSprite>();
         sprite->setSize({100,100});
-        sprite->load("data/pngwave.png");
+        sprite->load("data/rocket.png");
         mover = AddComponent<RandomMover>();
         mover->setTimeBetweenBounce(0.5f);
         mover->setBoundaries(0.f,100.f,0.1f,100.f);

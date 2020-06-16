@@ -87,7 +87,7 @@ int main() {
 
                 if(enemy.transform->getY()>window.getSize().y)
                 {
-                    win_sound.play();
+                    //win_sound.play();
                     enemy.transform->setPosition(rand()%window.getSize().x,0.f);
                     if(score<60)
                         enemy.mover->speed+=score+rand()%3;
