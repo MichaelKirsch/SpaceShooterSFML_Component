@@ -46,8 +46,8 @@ void ParticleEffect::respawm(Particle &p) {
     difference_color.b *=(rand()%100)*0.01f;
     p.body.setFillColor(begin_color+difference_color);
     p.body.setSize({10.f,10.f});
-    p.body.setPosition(owner->transform->getPosition());
-    p.position = owner->transform->getPosition();
+    p.body.setPosition(owner->transform->getPosition()+offset);
+    p.position = owner->transform->getPosition()+offset;
     p.gravity = gravity_direction;
     float rand_x = (100-rand()%200)*0.01f;
     float rand_y = (100-rand()%200)*0.01f;

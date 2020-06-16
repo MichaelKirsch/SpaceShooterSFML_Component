@@ -41,7 +41,7 @@ public:
     int num_particles;
     float gravity;
     sf::Vector2f gravity_direction;
-
+    sf::Vector2f offset;
 
 private:
 

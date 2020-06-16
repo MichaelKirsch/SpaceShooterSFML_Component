@@ -12,6 +12,10 @@ find_package(SFML 2.5.1 COMPONENTS system window graphics network audio REQUIRED
 find_package(OpenGL REQUIRED)
 file(COPY "data"  DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 
+include_directories(src/Components)
+include_directories(src/BaseClasses)
+
+
 add_executable(${PROJECT_NAME} ${SOURCES})
 
 target_link_libraries(${PROJECT_NAME} sfml-audio sfml-graphics sfml-window sfml-system ${OPENGL_LIBRARIES} )

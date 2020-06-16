@@ -13,9 +13,20 @@ public:
 
     void lateUpdate(float deltaTime) override;
 
+    sf::Vector2f getSize(){
+        return sprite.getSize();
+    }
+
+    void setSize(sf::Vector2f newSize)
+    {
+        sprite.setSize(newSize);
+    }
+
+    void update(float deltaTime) override;
+
 private:
     sf::Texture texture;
-    sf::Sprite sprite;
+    sf::RectangleShape sprite;
 };
 
 

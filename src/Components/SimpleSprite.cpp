@@ -6,8 +6,7 @@
 
 void SimpleSprite::load(const std::string &filePath) {
     texture.loadFromFile(filePath);
-    sprite.setTexture(texture);
-    sprite.scale(0.3f,0.3f);
+    sprite.setTexture(&texture);
 }
 
 void SimpleSprite::draw(sf::RenderWindow &window) {
@@ -19,5 +18,9 @@ SimpleSprite::SimpleSprite(Entity *owner) : Component(owner) {
 }
 
 void SimpleSprite::lateUpdate(float deltaTime) {
+    sprite.setPosition(owner->transform->getPosition());
+}
+
+void SimpleSprite::update(float deltaTime) {
     sprite.setPosition(owner->transform->getPosition());
 }
