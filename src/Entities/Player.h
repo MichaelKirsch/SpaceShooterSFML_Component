@@ -26,6 +26,13 @@ public:
         effect2->offset = {sprite->getSize().x/2,sprite->getSize().y};
         effect->offset = {sprite->getSize().x/2,sprite->getSize().y};
 
+        afterburner = AddComponent<ParticleEffect>();
+        afterburner->start(50,{231, 250, 0},{250, 209, 0},1.f,0.5f);
+        afterburner->offset = {sprite->getSize().x/2,sprite->getSize().y};
+        afterburner->gravity_direction={0.f,5.f};
+        afterburner->gravity = 2000.f;
+        afterburner->active = false;
+
         hitbox = AddComponent<Hitbox>();
         hitbox->start(sprite->getSize());
     };
@@ -34,6 +41,7 @@ public:
     std::shared_ptr<KeyboardMover> key;
     std::shared_ptr<ParticleEffect> effect;
     std::shared_ptr<ParticleEffect> effect2;
+    std::shared_ptr<ParticleEffect> afterburner;
     std::shared_ptr<Hitbox> hitbox;
 };
 

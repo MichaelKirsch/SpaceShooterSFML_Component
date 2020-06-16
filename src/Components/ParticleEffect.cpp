@@ -9,17 +9,19 @@ ParticleEffect::ParticleEffect(Entity *owner) : Component(owner) {
 }
 
 void ParticleEffect::update(float deltaTime) {
-    for(auto& p:m_particles)
-    {
-        p.update_lifetime(deltaTime);
-        if(!p.alife)
-            respawm(p);
-    }
+    if(active)
+        for(auto& p:m_particles)
+        {
+            p.update_lifetime(deltaTime);
+            if(!p.alife)
+                respawm(p);
+        }
 }
 
 void ParticleEffect::draw(sf::RenderWindow &window) {
-    for(auto& p: m_particles)
-        window.draw(p.body);
+    if(active)
+        for(auto& p: m_particles)
+            window.draw(p.body);
 }
 
 void ParticleEffect::start(int number, sf::Color beg, sf::Color end, float life_max, float life_min) {

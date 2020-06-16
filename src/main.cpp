@@ -99,6 +99,8 @@ int main() {
             }
             if(score<10)
             {
+                player.afterburner->active = false;
+                player.effect2->active = false;
                 trail.setString("Trail: Basic");
                 trail.setFillColor({217, 210, 130});
                 player.effect->begin_color= {217, 210, 130};
@@ -106,6 +108,7 @@ int main() {
             }
             if(score>10 && score<50)
             {
+
                 trail.setString("Trail: Booster");
                 trail.setFillColor(sf::Color::Green);
                 player.effect->begin_color=sf::Color::Green;
@@ -113,6 +116,7 @@ int main() {
             }
             if(score>50&&score<=75)
             {
+                player.effect2->active = true;
                 trail.setString("Trail: Extreme");
                 trail.setFillColor({177, 20, 255});
                 player.effect->begin_color= {177, 20, 255};
@@ -128,6 +132,7 @@ int main() {
 
             if(score>=100)
             {
+                player.afterburner->active = true;
                 trail.setString("Trail: LIGHTSPEED");
                 trail.setFillColor({245, 8, 0});
                 player.effect->begin_color= {245, 8, 0};
