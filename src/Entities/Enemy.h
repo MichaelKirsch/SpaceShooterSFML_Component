@@ -21,6 +21,7 @@ public:
         particles->gravity_direction={0.f,-2.f};
         particles->offset = body->getSize()/2.f;
         health = AddComponent<Health>();
+        health->start(1000);
         healthbar = AddComponent<Healthbar>();
         healthbar->start();
 
