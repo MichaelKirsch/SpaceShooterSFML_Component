@@ -12,7 +12,7 @@ public:
         body->setSize({100.f,100.f});
         body->load("data/a10000.png");
         mover = AddComponent<LinearMover>();
-        mover->start({0.f,1.f},50.f);
+        mover->start({0.f,1.f},250.f);
         hitbox = AddComponent<Hitbox>();
         hitbox->start(body->getSize());
         particles = AddComponent<ParticleEffect>();
