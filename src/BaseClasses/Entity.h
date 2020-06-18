@@ -12,8 +12,7 @@ public:
 
     virtual void awake();
 
-    virtual // Start is called after Awake method. Use to initialise variables.
-    void start();
+    virtual void start();// Start is called after Awake method. Use to initialise variables.
 
     virtual void update(float deltaTime);
 

@@ -5,6 +5,7 @@
 #include "KeyboardMover.h"
 #include "ParticleEffect.h"
 #include "Hitbox.h"
+#include "Health.h"
 
 class Player : public Entity{
 public:
@@ -17,7 +18,8 @@ public:
         mover->setBoundaries(0.f,100.f,0.1f,100.f);
         key = AddComponent<KeyboardMover>();
         effect = AddComponent<ParticleEffect>();
-
+        health = AddComponent<Health>();
+        health->start(1000);
         effect->start(1000,{250, 130, 0},{250, 25, 0},3.f,2.f);
         effect->gravity_direction = {0.f,-1.f};
         effect2 = AddComponent<ParticleEffect>();
@@ -43,6 +45,7 @@ public:
     std::shared_ptr<ParticleEffect> effect2;
     std::shared_ptr<ParticleEffect> afterburner;
     std::shared_ptr<Hitbox> hitbox;
+    std::shared_ptr<Health> health;
 };
 
 

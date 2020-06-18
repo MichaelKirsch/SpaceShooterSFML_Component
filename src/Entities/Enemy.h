@@ -16,9 +16,10 @@ public:
         hitbox = AddComponent<Hitbox>();
         hitbox->start(body->getSize());
         particles = AddComponent<ParticleEffect>();
-        particles->start(10,{255, 15, 15},{255, 36, 242},4.f,1.f);
-        particles->gravity_direction={0.f,0.f};
+        particles->start(10,{255, 15, 15},{255, 36, 242},0.1f,0.05f);
+        particles->gravity_direction={0.f,-2.f};
         particles->offset = body->getSize()/2.f;
+
     };
     std::shared_ptr<Hitbox> hitbox;
     std::shared_ptr<ParticleEffect> particles;

@@ -41,13 +41,20 @@ int main() {
         e.transform->setPosition(rand()%window.getSize().x,0.f);
         e.mover->speed = 200.f+rand()%70;
     }
-
     bool lost = false;
     int score = 0;
     bool begin=true;
     float lastime;
     while(window.isOpen())
     {
+
+        sf::Event e;
+        while(window.pollEvent(e))
+        {
+            if(e.type == sf::Event::Closed)
+                window.close();
+        }
+
         if(begin)
         {
             window.clear();
@@ -56,6 +63,7 @@ int main() {
             win.setString("You need to dodge the Asteroids\nuse the mouse to move\n PressEnter to begin\nYou can always leave with Escape\n150+ Score is crazy good!");
             win.setFillColor(sf::Color::Red);
             window.draw(win);
+            player.health->rechargePercent(100.f);
             if(sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
             {
                 begin=false;
@@ -70,6 +78,7 @@ int main() {
         {
             elapsed = vl.restart().asSeconds();
             window.clear();
+            lost = !player.health->isAlife();
             txt.setString("Your Score: "+ std::to_string(score)+" Time: "+std::to_string(survivalTimer.getElapsedTime().asSeconds()));
             window.draw(txt);
             window.draw(trail);
@@ -77,22 +86,33 @@ int main() {
             player.draw(window);
             player.update(elapsed);
             player.lateUpdate(elapsed);
+            if(player.transform->getX()<=0.f || player.transform->getX()>window.getSize().x)
+            {
+                lost = player.health->inflictDamagePercent(3.f);
+            }
+
             for(auto& enemy:enemypool)
             {
                 enemy.draw(window);
                 enemy.update(elapsed);
                 enemy.lateUpdate(elapsed);
                 if(player.hitbox->AABBCollisionTest(enemy.hitbox))
-                    lost = true;
+                {
+                    player.health->inflictDamagePercent(20.f);
+                    enemy.transform->setPosition(rand()%window.getSize().x,0.f);
+                }
+
 
                 if(enemy.transform->getY()>window.getSize().y)
                 {
                     //win_sound.play();
+                    if(rand()%100<6)
+                        player.health->rechargePercent(1.f);
                     enemy.transform->setPosition(rand()%window.getSize().x,0.f);
                     if(score<60)
                         enemy.mover->speed+=score+rand()%3;
                     else
-                        enemy.mover->speed++;
+                        enemy.mover->speed+=10;
                     score++;
                 }
 
@@ -139,13 +159,12 @@ int main() {
                 player.effect->end_color= {245, 8, 0};
             }
 
+            std::string tr = trail.getString();
+            //tr+="\nInvisible Timer:"+std::to_string(outsidetimer);
+            tr+="\nHealth:"+std::to_string(player.health->getHealthPercent())+"%";
+            trail.setString(tr);
 
-            sf::Event e;
-            while(window.pollEvent(e))
-            {
-                if(e.type == sf::Event::Closed)
-                    window.close();
-            }
+
             if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
                 window.close();
             window.display();
@@ -166,6 +185,8 @@ int main() {
                 player.transform->setY(window.getSize().y);
                 score=0;
                 lost = false;
+                player.health->rechargePercent(100.f);
+
                 for(auto& e:enemypool)
                 {
                     e.transform->setY(0.f);
