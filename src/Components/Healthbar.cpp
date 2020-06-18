@@ -11,7 +11,7 @@ Healthbar::Healthbar(Entity *owner) : Component(owner) {
 void Healthbar::start() {
     foreground.setSize({10,10});
     foreground.setFillColor(sf::Color::Red);
-
+    ownerHealth = owner->GetComponent<Health>();
     sizeOfOwner = owner->GetComponent<SimpleSprite>()->getSize();
     background.setSize({sizeOfOwner.x, 10});
     background.setFillColor(sf::Color::White);
@@ -21,8 +21,7 @@ void Healthbar::update(float deltaTime) {
     foreground.setPosition(owner->transform->getPosition());
     background.setPosition(owner->transform->getPosition());
 
-    actualHealthRaw = owner->GetComponent<Health>()->getHealthRaw();
-
+    actualHealthPercent = ownerHealth->getHealthPercent();
     if(actualHealthPercent >= 0)
         foreground.setSize({float(actualHealthPercent), 10});
 

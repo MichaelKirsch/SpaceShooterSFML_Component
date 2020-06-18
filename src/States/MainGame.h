@@ -3,7 +3,7 @@
 #include "Entity.h"
 #include "Entities/Player.h"
 #include "Entities/Enemy.h"
-
+#include "Entities/HealthPowerUp.h"
 
 class MainGame : public State {
 public:
@@ -22,7 +22,7 @@ private:
     std::shared_ptr<Player> player;
     std::array<Enemy,5> allEnemies;
     std::vector<std::shared_ptr<Entity>> allEntities;
-
+    std::array<HealthPowerUp,1> powerups;
     int score=0;
 
 };

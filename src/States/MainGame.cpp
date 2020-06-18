@@ -18,13 +18,26 @@ void MainGame::update(float deltaTime) {
             score++;
         }
     }
+    for(auto& f:powerups)
+    {
+        f.update(deltaTime);
+        if(f.hitbox->AABBCollisionTest(player->hitbox))
+        {
+            player->health->rechargePercent(10);
+            f.transform->setPosition(rand()%m_window->getSize().x,0.f);
+        }
+
+        if(f.transform->getY()>m_window->getSize().y*3) //gets reset very late
+        {
+            f.transform->setPosition(rand()%m_window->getSize().x,0.f);
+        }
+    }
+
     scoreText.setString("Score:"+std::to_string(score));
     trailtext.setString("Health: "+ std::to_string(player->health->getHealthPercent())+ "%");
     if(!player->health->isAlife())
     {
     }
-
-
 }
 
 void MainGame::draw(sf::RenderWindow &window) {
@@ -36,6 +49,12 @@ void MainGame::draw(sf::RenderWindow &window) {
     {
         e.draw(window);
     }
+
+    for(auto& f:powerups)
+    {
+        f.draw(window);
+    }
+
     window.draw(scoreText);
     window.draw(trailtext);
 
@@ -68,6 +87,13 @@ MainGame::MainGame(Statemachine* st,sf::RenderWindow &window) : State(st) {
         e.start();
         e.transform->setX(rand()%window.getSize().x);
     }
+    for(auto& f:powerups)
+    {
+        f.transform->setX(rand()%window.getSize().x);
+        f.mover->speed =200.f;
+    }
+
+
 }
 
 

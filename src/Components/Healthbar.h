@@ -22,6 +22,8 @@ private:
     sf::RectangleShape foreground;
     sf::RectangleShape background;
 
+    std::shared_ptr<Health> ownerHealth;
+
     sf::Color m_color;
     int actualHealthPercent;
     sf::Vector2f sizeOfOwner;
