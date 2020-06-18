@@ -27,7 +27,7 @@ void Health::rechargePercent(float percent) {
 }
 
 bool Health::isAlife() {
-    return health>0;
+    return health>0.f;
 }
 
 float Health::getHealthRaw() {
@@ -42,10 +42,23 @@ int Health::getHealthPercent() {
 bool Health::inflictDamagePercent(float percent) {
     float one_perc = maxHealth/100.f;
     health-=one_perc*percent;
-    return health<0.f;
+
+    if(health <= 0.f){
+        health = 0.f;
+        alive = false;
+    }
+
+
+    return health<=0.f;
 }
 
 bool Health::inflictDamageRaw(float raw_damage) {
     health-=raw_damage;
-    return health<0.f;
+
+    if(health <= 0.f){
+        health = 0.f;
+        alive = false;
+    }
+
+    return health<=0.f;
 }
