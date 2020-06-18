@@ -20,18 +20,12 @@ public:
         particles->start(10,{255, 15, 15},{255, 36, 242},0.07f,0.03f);
         particles->gravity_direction={0.f,-2.f};
         particles->offset = body->getSize()/2.f;
-        health = AddComponent<Health>();
-        health->start(1000);
-        healthbar = AddComponent<Healthbar>();
-        healthbar->start();
 
     };
     std::shared_ptr<Hitbox> hitbox;
     std::shared_ptr<ParticleEffect> particles;
     std::shared_ptr<SimpleSprite> body;
     std::shared_ptr<LinearMover> mover;
-    std::shared_ptr<Health> health;
-    std::shared_ptr<Healthbar> healthbar;
 private:
 };
 

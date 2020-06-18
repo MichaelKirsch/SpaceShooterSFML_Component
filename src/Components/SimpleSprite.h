@@ -22,6 +22,12 @@ public:
         sprite.setSize(newSize);
     }
 
+    sf::Texture& getTexture()
+    {
+        return texture;
+    }
+
+
     void update(float deltaTime) override;
 
 private:
