@@ -13,8 +13,13 @@ public:
     void start() override;
 
     void update(float deltaTime) override;
-    void setColor(sf::Color color);
-    sf::Color getColor();
+
+    void setColorForeground(sf::Color color);
+    void setColorBackground(sf::Color color);
+
+    sf::Color getColorForeground();
+    sf::Color getColorBackground();
+
 
     void draw(sf::RenderWindow &window) override;
 
@@ -24,7 +29,9 @@ private:
 
     std::shared_ptr<Health> ownerHealth;
 
-    sf::Color m_color;
+    sf::Color m_colorForeground;
+    sf::Color m_colorBackground;
+
     int actualHealthPercent;
     sf::Vector2f sizeOfOwner;
     float actualHealthRaw;

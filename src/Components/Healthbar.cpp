@@ -9,12 +9,15 @@ Healthbar::Healthbar(Entity *owner) : Component(owner) {
 }
 
 void Healthbar::start() {
+
+    setColorForeground(sf::Color::Red);
     foreground.setSize({10,10});
-    foreground.setFillColor(sf::Color::Red);
+
+
     ownerHealth = owner->GetComponent<Health>();
     sizeOfOwner = owner->GetComponent<SimpleSprite>()->getSize();
+    setColorBackground(sf::Color::White);
     background.setSize({sizeOfOwner.x, 10});
-    background.setFillColor(sf::Color::White);
 }
 
 void Healthbar::update(float deltaTime) {
@@ -32,16 +35,26 @@ void Healthbar::draw(sf::RenderWindow &window) {
         window.draw(background);
         window.draw(foreground);
     }
-
-
 }
 
-void Healthbar::setColor(sf::Color color) {
-    m_color = color;
+void Healthbar::setColorForeground(sf::Color color) {
+    m_colorForeground = color;
+    foreground.setFillColor(m_colorForeground);
 }
 
-sf::Color Healthbar::getColor() {
-    return m_color;
+void Healthbar::setColorBackground(sf::Color color) {
+    m_colorBackground = color;
+    background.setFillColor(m_colorBackground);
 }
+
+sf::Color Healthbar::getColorForeground() {
+    return m_colorForeground;
+}
+
+sf::Color Healthbar::getColorBackground() {
+    return m_colorBackground;
+}
+
+
 
 
