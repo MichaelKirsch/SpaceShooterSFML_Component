@@ -64,7 +64,6 @@ public:
     };
 
     std::shared_ptr<Transform> transform;
-
 private:
     std::vector<std::shared_ptr<Component>> components;
 };

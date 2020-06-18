@@ -3,3 +3,39 @@
 //
 
 #include "Statemachine.h"
+#include "States/MainGame.h"
+
+void Statemachine::run() {
+    elapsed = 0.f;
+    frametimer = 0.f;
+    ticktimer = 0.f;
+    while (window.isOpen())
+    {
+        elapsed = timer.restart().asSeconds();
+        frametimer += elapsed;
+        ticktimer +=elapsed;
+        if (ticktimer>1.f/tickrate)
+        {
+
+            playedState->update(ticktimer);
+            playedState->inputs();
+            ticktimer = 0.f;
+        }
+        if(frametimer>1.f/framerate)
+        {
+            playedState->draw(window);
+            frametimer =0.f;
+        }
+
+        sf::Event e;
+        while (window.pollEvent(e))
+            if(e.type == sf::Event::Closed)
+                window.close();
+
+    }
+}
+
+Statemachine::Statemachine() {
+    window.create(sf::VideoMode(1000,1000),"SpaceShooter");
+    playedState = std::make_unique<MainGame>(window);
+}

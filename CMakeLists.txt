@@ -11,6 +11,8 @@ file(COPY "data"  DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 
 include_directories(src/Components)
 include_directories(src/BaseClasses)
+include_directories(src/Engine)
+include_directories(src)
 
 add_executable(${PROJECT_NAME} ${SOURCES})
 
