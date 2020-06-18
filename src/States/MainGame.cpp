@@ -20,6 +20,10 @@ void MainGame::update(float deltaTime) {
     }
     scoreText.setString("Score:"+std::to_string(score));
     trailtext.setString("Health: "+ std::to_string(player->health->getHealthPercent())+ "%");
+    if(!player->health->isAlife())
+    {
+    }
+
 
 }
 

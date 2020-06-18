@@ -2,13 +2,18 @@
 #include "Component.h"
 #include "Entity.h"
 
-class Healthbar {
+class Healthbar : public Component{
 public:
     Healthbar(Entity* owner);
 
-    ~Healthbar();
+    void start() override;
+
+    void update(float deltaTime) override;
+
+    void draw(sf::RenderWindow &window) override;
 
 private:
+    sf::RectangleShape body;
 };
 
 

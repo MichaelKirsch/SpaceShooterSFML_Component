@@ -6,6 +6,7 @@
 #include "ParticleEffect.h"
 #include "Hitbox.h"
 #include "Health.h"
+#include "Healthbar.h"
 
 class Player : public Entity{
 public:
@@ -24,7 +25,8 @@ public:
         effect2->gravity_direction = {0.f,6.f};
         effect2->offset = {sprite->getSize().x/2,sprite->getSize().y};
         effect->offset = {sprite->getSize().x/2,sprite->getSize().y};
-
+        healthbar = AddComponent<Healthbar>();
+        healthbar->start();
         afterburner = AddComponent<ParticleEffect>();
         afterburner->start(50,{231, 250, 0},{250, 209, 0},1.f,0.5f);
         afterburner->offset = {sprite->getSize().x/2,sprite->getSize().y};
@@ -42,6 +44,7 @@ public:
     std::shared_ptr<ParticleEffect> afterburner;
     std::shared_ptr<Hitbox> hitbox;
     std::shared_ptr<Health> health;
+    std::shared_ptr<Healthbar> healthbar;
 };
 
 
