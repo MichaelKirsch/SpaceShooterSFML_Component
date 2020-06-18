@@ -1,7 +1,3 @@
-//
-// Created by micha on 18.06.2020.
-//
-
 #include "MainGame.h"
 
 void MainGame::update(float deltaTime) {
@@ -11,14 +7,20 @@ void MainGame::update(float deltaTime) {
     {
         e.update(deltaTime);
         if(e.hitbox->AABBCollisionTest(player->hitbox))
+        {
             e.transform->setPosition(rand()%m_window->getSize().x,0.f);
+            player->health->inflictDamagePercent(10);
+        }
         if(e.transform->getY()>m_window->getSize().y)
         {
             e.transform->setPosition(rand()%m_window->getSize().x,0.f);
             e.mover->speed+=50.f+rand()%6;
+            score++;
         }
-
     }
+    scoreText.setString("Score:"+std::to_string(score));
+    trailtext.setString("Health: "+ std::to_string(player->health->getHealthPercent())+ "%");
+
 }
 
 void MainGame::draw(sf::RenderWindow &window) {
@@ -30,6 +32,9 @@ void MainGame::draw(sf::RenderWindow &window) {
     {
         e.draw(window);
     }
+    window.draw(scoreText);
+    window.draw(trailtext);
+
 
     window.display();
 }
@@ -39,13 +44,19 @@ void MainGame::inputs() {
     player->transform->setY(sf::Mouse::getPosition(*m_window).y);
 }
 
-MainGame::MainGame(sf::RenderWindow &window) {
+MainGame::MainGame(Statemachine* st,sf::RenderWindow &window) : State(st) {
+    font.loadFromFile("data/Fonts/JetBrainsMono-Bold.ttf");
+    scoreText.setFont(font);
+    trailtext.setFont(font);
+    scoreText.setCharacterSize(window.getSize().x*0.07f);
+    trailtext.setCharacterSize(window.getSize().x*0.05f);
+    trailtext.setPosition(0.f,window.getSize().x*0.08f);
+    scoreText.setFillColor(sf::Color::Yellow);
+    trailtext.setFillColor(sf::Color::Magenta);
     window.setMouseCursorVisible(false);
     m_window = &window;
     player = std::make_shared<Player>();
     player->start();
-    player->effect->active = true;
-    player->effect2->active = true;
     allEntities.push_back(player);
 
     for(auto& e:allEnemies)

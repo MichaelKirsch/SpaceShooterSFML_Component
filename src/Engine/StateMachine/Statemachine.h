@@ -4,10 +4,12 @@
 #include "SFML/Graphics.hpp"
 
 
+
 class Statemachine {
 public:
     Statemachine();
     void run();
+    void switch_state(){};
 
 private:
     int framerate = 60;

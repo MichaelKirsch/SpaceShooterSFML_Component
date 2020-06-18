@@ -37,5 +37,5 @@ void Statemachine::run() {
 
 Statemachine::Statemachine() {
     window.create(sf::VideoMode(1000,1000),"SpaceShooter");
-    playedState = std::make_unique<MainGame>(window);
+    playedState = std::make_unique<MainGame>(this,window);
 }
