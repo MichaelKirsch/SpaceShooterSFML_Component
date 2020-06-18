@@ -21,8 +21,8 @@ void Healthbar::start() {
 }
 
 void Healthbar::update(float deltaTime) {
-    foreground.setPosition(owner->transform->getPosition());
-    background.setPosition(owner->transform->getPosition());
+    foreground.setPosition(owner->transform->getPosition().x, owner->transform->getY() - 2*foreground.getSize().y );
+    background.setPosition(owner->transform->getPosition().x, owner->transform->getY() - 2*foreground.getSize().y);
 
     actualHealthPercent = ownerHealth->getHealthPercent();
     if(actualHealthPercent >= 0)

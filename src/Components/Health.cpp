@@ -48,7 +48,6 @@ bool Health::inflictDamagePercent(float percent) {
         alive = false;
     }
 
-
     return health<=0.f;
 }
 
