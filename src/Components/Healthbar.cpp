@@ -8,15 +8,16 @@ Healthbar::Healthbar(Entity *owner) : Component(owner) {
 
 }
 
-void Healthbar::start() {
+void Healthbar::start(sf::Color i_backgroundColor, sf::Color i_foregroundColor) {
 
-    setColorForeground(sf::Color::Red);
+
+
+    setColorForeground(i_foregroundColor);
     foreground.setSize({10,10});
-
-
+    
     ownerHealth = owner->GetComponent<Health>();
     sizeOfOwner = owner->GetComponent<SimpleSprite>()->getSize();
-    setColorBackground(sf::Color::White);
+    setColorBackground(i_backgroundColor);
     background.setSize({sizeOfOwner.x, 10});
 }
 
