@@ -26,7 +26,7 @@ void Healthbar::update(float deltaTime) {
 
     actualHealthPercent = ownerHealth->getHealthPercent();
     if(actualHealthPercent >= 0)
-        foreground.setSize({float(actualHealthPercent)*background.getSize().x, 10});
+        foreground.setSize({float(actualHealthPercent)*(0.01f*background.getSize().x), 10});
 
 }
 
