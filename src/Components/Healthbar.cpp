@@ -45,6 +45,7 @@ void Healthbar::setColorForeground(sf::Color color) {
 void Healthbar::setColorBackground(sf::Color color) {
     m_colorBackground = color;
     background.setFillColor(m_colorBackground);
+    //T
 }
 
 sf::Color& Healthbar::getColorForeground() {
