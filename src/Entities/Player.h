@@ -41,6 +41,7 @@ public:
         aura->start();
         invmode = AddComponent<InvisibiltyMode>();
         invmode->start(5.f);
+        invmode->trigger();
     };
 
     std::shared_ptr<SimpleSprite> sprite;
