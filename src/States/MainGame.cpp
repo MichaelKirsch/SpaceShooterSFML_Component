@@ -63,6 +63,9 @@ void MainGame::update(float deltaTime) {
 
 void MainGame::draw(sf::RenderWindow &window) {
     window.clear();
+
+    newBackground.draw(window);
+
     for(auto& e:allEntities)
         e->draw(window);
 
@@ -87,6 +90,7 @@ void MainGame::inputs() {
 }
 
 MainGame::MainGame(Statemachine* st,sf::RenderWindow &window) : State(st) {
+    newBackground.start(window);
     font.loadFromFile("data/Fonts/JetBrainsMono-Bold.ttf");
     scoreText.setFont(font);
     trailtext.setFont(font);

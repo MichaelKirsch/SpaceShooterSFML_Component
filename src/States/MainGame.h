@@ -8,6 +8,8 @@
 #include "StateMachine/Statemachine.h"
 #include <cmath>
 #include "Entities/InvisibleToken.h"
+#include "Entities/SpaceBackground.h"
+
 
 class MainGame : public State {
 public:
@@ -28,6 +30,7 @@ private:
     std::array<Enemy,5> allEnemies;
     std::vector<std::shared_ptr<Entity>> allEntities;
     std::array<HealthPowerUp,1> powerups;
+    SpaceBackground newBackground;
     InvisibleToken invis;
     int score=0;
     const float max_speed_var = 400.f;
