@@ -28,7 +28,7 @@ public:
         effect2->offset = {sprite->getSize().x/2,sprite->getSize().y};
         effect->offset = {sprite->getSize().x/2,sprite->getSize().y};
         healthbar = AddComponent<Healthbar>();
-        healthbar->start();
+        healthbar->start(); //
         afterburner = AddComponent<ParticleEffect>();
         afterburner->start(50,{231, 250, 0},{250, 209, 0},1.f,0.5f);
         afterburner->offset = {sprite->getSize().x/2,sprite->getSize().y};
