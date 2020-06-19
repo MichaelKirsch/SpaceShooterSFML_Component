@@ -8,6 +8,7 @@ public:
     ~Gun();
 
 private:
+
 };
 
 

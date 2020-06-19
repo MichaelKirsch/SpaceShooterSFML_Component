@@ -10,7 +10,7 @@ class Healthbar : public Component{
 public:
     Healthbar(Entity* owner);
 
-    void start() override;
+    void start(sf::Color backgroundColor = {255, 255, 255}, sf::Color foregroundColor = {239, 87, 78});
 
     void update(float deltaTime) override;
 
