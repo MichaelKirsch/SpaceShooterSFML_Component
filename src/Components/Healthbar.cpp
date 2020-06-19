@@ -47,11 +47,11 @@ void Healthbar::setColorBackground(sf::Color color) {
     background.setFillColor(m_colorBackground);
 }
 
-sf::Color Healthbar::getColorForeground() {
+sf::Color& Healthbar::getColorForeground() {
     return m_colorForeground;
 }
 
-sf::Color Healthbar::getColorBackground() {
+sf::Color& Healthbar::getColorBackground() {
     return m_colorBackground;
 }
 
