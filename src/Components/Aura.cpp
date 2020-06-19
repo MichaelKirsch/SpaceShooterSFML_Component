@@ -28,7 +28,6 @@ void Aura::update(float deltaTime) {
     if(outerAlpha>100.f)
         outerAlpha=0.f;
     innerAlpha+=1.1f;
-    //
     if(innerAlpha>150.f)
         innerAlpha=0.f;
 

@@ -11,11 +11,12 @@ void MainGame::update(float deltaTime) {
     for(auto& e:allEnemies)
     {
         e.update(deltaTime);
-        if(e.hitbox->AABBCollisionTest(player->hitbox))
-        {
-            e.transform->setPosition(rand()%m_window->getSize().x,0.f);
-            player->health->inflictDamagePercent(10);
-        }
+        if(!player->invmode->isInvisible())
+            if(e.hitbox->AABBCollisionTest(player->hitbox))
+            {
+                e.transform->setPosition(rand()%m_window->getSize().x,0.f);
+                player->health->inflictDamagePercent(25);
+            }
         if(e.transform->getY()>m_window->getSize().y)
         {
             e.transform->setPosition(rand()%m_window->getSize().x,0.f);
@@ -34,17 +35,30 @@ void MainGame::update(float deltaTime) {
 
         if(f.transform->getY()>m_window->getSize().y*3) //gets reset very late
         {
-            f.transform->setPosition(rand()%m_window->getSize().x,0.f);
+            f.transform->setPosition(rand()%m_window->getSize().x,-rand()%500);
         }
     }
 
+    invis.update(deltaTime);
+    if(invis.transform->getY()>m_window->getSize().y)
+        invis.transform->setPosition(rand()%m_window->getSize().x,-rand()%1000);
+    if(invis.hitbox->AABBCollisionTest(player->hitbox))
+    {
+        player->invmode->trigger();
+        invis.transform->setPosition(rand()%m_window->getSize().x,-rand()%1000);
+    }
+
+
     scoreText.setString("Score:"+std::to_string(score));
     trailtext.setString("Health: "+ std::to_string(player->health->getHealthPercent())+ "%");
+
     if(!player->health->isAlife())
     {
-        stm->setNextState(std::make_shared<TestState>(stm,*m_window));
-        //switch to new state somehow
+        auto s = std::make_shared<TestState>(stm,*m_window);
+        s->score = score;
+        stm->setNextState(s);
     }
+
 }
 
 void MainGame::draw(sf::RenderWindow &window) {
@@ -61,7 +75,7 @@ void MainGame::draw(sf::RenderWindow &window) {
     {
         f.draw(window);
     }
-
+    invis.draw(window);
     window.draw(scoreText);
     window.draw(trailtext);
     window.display();
@@ -87,6 +101,8 @@ MainGame::MainGame(Statemachine* st,sf::RenderWindow &window) : State(st) {
     player->start();
     allEntities.push_back(player);
 
+    invis.transform->setX(rand()%window.getSize().x);
+    invis.transform->setY(0.f);
     for(auto& e:allEnemies)
     {
         e.start();
@@ -95,9 +111,8 @@ MainGame::MainGame(Statemachine* st,sf::RenderWindow &window) : State(st) {
     for(auto& f:powerups)
     {
         f.transform->setX(rand()%window.getSize().x);
-        f.mover->speed =200.f;
+        f.mover->speed = 200.f;
     }
-
 
 }
 

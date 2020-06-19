@@ -10,7 +10,7 @@ public:
     void update(float deltaTime) override;
 
     void draw(sf::RenderWindow &window) override;
-
+    int score=0;
     void inputs() override;
     ~TestState();
 private:

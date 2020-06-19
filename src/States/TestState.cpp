@@ -5,7 +5,7 @@
 #include "TestState.h"
 
 void TestState::update(float deltaTime) {
-    text.setString("This is the test State\nclick left mouse to get back\nto the normal game\nright ends game");
+    text.setString("Endscore:"+std::to_string(score));
 }
 
 void TestState::draw(sf::RenderWindow &window) {

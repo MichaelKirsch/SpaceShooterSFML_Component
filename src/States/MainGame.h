@@ -7,6 +7,7 @@
 #include "TestState.h"
 #include "StateMachine/Statemachine.h"
 #include <cmath>
+#include "Entities/InvisibleToken.h"
 
 class MainGame : public State {
 public:
@@ -27,6 +28,7 @@ private:
     std::array<Enemy,5> allEnemies;
     std::vector<std::shared_ptr<Entity>> allEntities;
     std::array<HealthPowerUp,1> powerups;
+    InvisibleToken invis;
     int score=0;
     const float max_speed_var = 400.f;
     const float startSpeed = 200.f;

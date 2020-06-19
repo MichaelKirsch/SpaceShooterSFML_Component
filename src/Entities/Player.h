@@ -8,6 +8,8 @@
 #include "Health.h"
 #include "Healthbar.h"
 #include "Aura.h"
+#include "InvisibiltyMode.h"
+
 class Player : public Entity{
 public:
     Player(){
@@ -37,7 +39,10 @@ public:
         hitbox->start(sprite->getSize());
         aura = AddComponent<Aura>();
         aura->start();
+        invmode = AddComponent<InvisibiltyMode>();
+        invmode->start(5.f);
     };
+
     std::shared_ptr<SimpleSprite> sprite;
     std::shared_ptr<KeyboardMover> key;
     std::shared_ptr<ParticleEffect> effect;
@@ -47,6 +52,7 @@ public:
     std::shared_ptr<Health> health;
     std::shared_ptr<Healthbar> healthbar;
     std::shared_ptr<Aura> aura;
+    std::shared_ptr<InvisibiltyMode> invmode;
 };
 
 
