@@ -3,6 +3,11 @@
 void MainGame::update(float deltaTime) {
     player->update(deltaTime);
     player->lateUpdate(deltaTime);
+
+    if(player->transform->getY()<0.f || player->transform->getY()>m_window->getSize().y ||
+    player->transform->getX()<0.f ||player->transform->getX()>m_window->getSize().x)
+        player->health->inflictDamagePercent(1.f);
+
     for(auto& e:allEnemies)
     {
         e.update(deltaTime);
