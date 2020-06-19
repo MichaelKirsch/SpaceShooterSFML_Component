@@ -7,7 +7,7 @@
 #include "Hitbox.h"
 #include "Health.h"
 #include "Healthbar.h"
-
+#include "Aura.h"
 class Player : public Entity{
 public:
     Player(){
@@ -33,9 +33,10 @@ public:
         afterburner->gravity_direction={0.f,5.f};
         afterburner->gravity = 2000.f;
         afterburner->active = false;
-
         hitbox = AddComponent<Hitbox>();
         hitbox->start(sprite->getSize());
+        aura = AddComponent<Aura>();
+        aura->start();
     };
     std::shared_ptr<SimpleSprite> sprite;
     std::shared_ptr<KeyboardMover> key;
@@ -45,6 +46,7 @@ public:
     std::shared_ptr<Hitbox> hitbox;
     std::shared_ptr<Health> health;
     std::shared_ptr<Healthbar> healthbar;
+    std::shared_ptr<Aura> aura;
 };
 
 

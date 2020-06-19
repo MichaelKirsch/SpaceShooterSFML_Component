@@ -64,8 +64,6 @@ void MainGame::draw(sf::RenderWindow &window) {
 
     window.draw(scoreText);
     window.draw(trailtext);
-
-
     window.display();
 }
 
