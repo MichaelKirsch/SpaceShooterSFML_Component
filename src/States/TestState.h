@@ -3,7 +3,8 @@
 #include "StateMachine/Statemachine.h"
 #include "MainGame.h"
 
-class TestState : public State {
+class
+TestState : public State {
 public:
     TestState(Statemachine* st,sf::RenderWindow& window);
 

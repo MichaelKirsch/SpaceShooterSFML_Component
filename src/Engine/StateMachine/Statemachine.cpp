@@ -4,6 +4,7 @@
 
 #include "Statemachine.h"
 #include "States/MainGame.h"
+#include "States/StartupScreen.h"
 
 void Statemachine::run() {
     elapsed = 0.f;
@@ -40,5 +41,5 @@ void Statemachine::run() {
 
 Statemachine::Statemachine() {
     window.create(sf::VideoMode(1000,1000),"SpaceShooter");
-    playedState = std::make_shared<MainGame>(this,window);
+    playedState = std::make_shared<StartupScreen>(this,window);
 }
