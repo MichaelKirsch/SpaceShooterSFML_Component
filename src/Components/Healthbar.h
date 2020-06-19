@@ -17,8 +17,8 @@ public:
     void setColorForeground(sf::Color color);
     void setColorBackground(sf::Color color);
 
-    sf::Color getColorForeground();
-    sf::Color getColorBackground();
+    sf::Color& getColorForeground();
+    sf::Color& getColorBackground();
 
 
     void draw(sf::RenderWindow &window) override;
