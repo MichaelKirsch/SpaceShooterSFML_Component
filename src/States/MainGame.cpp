@@ -37,6 +37,8 @@ void MainGame::update(float deltaTime) {
     trailtext.setString("Health: "+ std::to_string(player->health->getHealthPercent())+ "%");
     if(!player->health->isAlife())
     {
+        stm->setNextState(std::make_shared<TestState>(stm,*m_window));
+        //switch to new state somehow
     }
 }
 

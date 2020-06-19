@@ -9,12 +9,17 @@ class Statemachine {
 public:
     Statemachine();
     void run();
-    void switch_state(){};
+    std::shared_ptr<State> setNextState(std::shared_ptr<State> newState)
+    {
+        nextState = newState;
+        return playedState; //return played state to maybe get back to it
+    };
 
 private:
     int framerate = 60;
     int tickrate = 30;
-    std::unique_ptr<State> playedState;
+    std::shared_ptr<State> playedState;
+    std::shared_ptr<State> nextState;
     sf::RenderWindow window;
     sf::Clock timer;
     float frametimer,ticktimer;

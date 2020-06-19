@@ -4,6 +4,8 @@
 #include "Entities/Player.h"
 #include "Entities/Enemy.h"
 #include "Entities/HealthPowerUp.h"
+#include "TestState.h"
+#include "StateMachine/Statemachine.h"
 
 class MainGame : public State {
 public:

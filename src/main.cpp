@@ -8,4 +8,5 @@
 int main() {
     Statemachine st;
     st.run();
+    return 0;
 }
