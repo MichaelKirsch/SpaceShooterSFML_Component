@@ -22,6 +22,9 @@ void TestState::inputs() {
     if(sf::Mouse::isButtonPressed(sf::Mouse::Left))
         stm->setNextState(std::make_shared<MainGame>(stm,*m_window));
 
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
+        stm->setNextState(stm->oldstate);
+
 }
 
 TestState::TestState(Statemachine *st, sf::RenderWindow &window) : State(st){

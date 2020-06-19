@@ -17,6 +17,7 @@ public:
 
     void inputs() override;
 
+    ~MainGame();
 private:
     sf::Font font;
     sf::Text scoreText, trailtext;

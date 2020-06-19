@@ -98,4 +98,8 @@ MainGame::MainGame(Statemachine* st,sf::RenderWindow &window) : State(st) {
 
 }
 
+MainGame::~MainGame() {
+    std::cout << "Main Game goes out of scope" << std::endl;
+}
+
 
