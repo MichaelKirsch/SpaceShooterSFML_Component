@@ -6,6 +6,7 @@
 #include "Entities/HealthPowerUp.h"
 #include "TestState.h"
 #include "StateMachine/Statemachine.h"
+#include <cmath>
 
 class MainGame : public State {
 public:
@@ -27,7 +28,9 @@ private:
     std::vector<std::shared_ptr<Entity>> allEntities;
     std::array<HealthPowerUp,1> powerups;
     int score=0;
-
+    const float max_speed_var = 400.f;
+    const float startSpeed = 200.f;
+    float getAddSpeed(int stage,float max_speed_control, float offset);
 };
 
 

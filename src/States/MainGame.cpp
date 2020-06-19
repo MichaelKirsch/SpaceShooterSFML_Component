@@ -19,7 +19,7 @@ void MainGame::update(float deltaTime) {
         if(e.transform->getY()>m_window->getSize().y)
         {
             e.transform->setPosition(rand()%m_window->getSize().x,0.f);
-            e.mover->speed+=50.f+rand()%6;
+            e.mover->speed=getAddSpeed(score,max_speed_var,startSpeed);
             score++;
         }
     }
@@ -106,5 +106,11 @@ MainGame::MainGame(Statemachine* st,sf::RenderWindow &window) : State(st) {
 MainGame::~MainGame() {
     std::cout << "Main Game goes out of scope" << std::endl;
 }
+
+float MainGame::getAddSpeed(int stage, float max_speed_control, float offset) {
+    return offset+log10(stage)*max_speed_control;
+}
+
+
 
 

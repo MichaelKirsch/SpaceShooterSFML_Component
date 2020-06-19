@@ -12,7 +12,7 @@ public:
     void draw(sf::RenderWindow &window) override;
 
     void inputs() override;
-
+    ~TestState();
 private:
     sf::Font font;
     sf::Text text;

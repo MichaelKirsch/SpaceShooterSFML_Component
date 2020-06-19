@@ -36,3 +36,7 @@ TestState::TestState(Statemachine *st, sf::RenderWindow &window) : State(st){
     text.setCharacterSize(window.getSize().y*0.05f);
     text.setFillColor(sf::Color::Red);
 }
+
+TestState::~TestState() {
+    std::cout << "Test State goes out of scope" << std::endl;
+}
