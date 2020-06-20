@@ -1,9 +1,53 @@
 #include "MainGame.h"
 
+MainGame::MainGame(Statemachine* st,sf::RenderWindow &window) : State(st) {
+    newBackground.start(window);
+    font.loadFromFile("data/Fonts/JetBrainsMono-Bold.ttf");
+    scoreText.setFont(font);
+    trailtext.setFont(font);
+    scoreText.setCharacterSize(window.getSize().x*0.04f);
+    trailtext.setCharacterSize(window.getSize().x*0.04f);
+    trailtext.setPosition(0.f,window.getSize().x*0.06f);
+    scoreText.setFillColor(sf::Color::Yellow);
+    trailtext.setFillColor(sf::Color::Magenta);
+    window.setMouseCursorVisible(false);
+    m_window = &window;
+    player = std::make_shared<Player>();
+    player->start();
+    allEntities.push_back(player);
+    coin.start(Coins::CoinType::BRONZE,window);
+    invis.transform->setX(rand()%window.getSize().x);
+    invis.transform->setY(0.f);
+    for(auto& e:allEnemies)
+    {
+        e.start();
+        e.transform->setX(rand()%window.getSize().x);
+    }
+    for(auto& f:powerups)
+    {
+        f.transform->setX(rand()%window.getSize().x);
+        f.mover->speed = 200.f;
+    }
+
+}
+
+MainGame::~MainGame() {
+    std::cout << "Main Game goes out of scope" << std::endl;
+}
+
+
 void MainGame::update(float deltaTime) {
     player->update(deltaTime);
     player->lateUpdate(deltaTime);
+    coin.update(deltaTime);
 
+    if(coin.transform->getY()>m_window->getSize().y)
+        coin.transform->setPosition(rand()%m_window->getSize().x,0.f);
+    if(coin.hitbox->AABBCollisionTest(player->hitbox))
+    {
+        coin.transform->setPosition(rand()%m_window->getSize().x,0.f);
+        player->cash+=coin.getValue();
+    }
     if(player->transform->getY()<0.f || player->transform->getY()>m_window->getSize().y ||
     player->transform->getX()<0.f ||player->transform->getX()>m_window->getSize().x)
         player->health->inflictDamagePercent(1.f);
@@ -51,7 +95,7 @@ void MainGame::update(float deltaTime) {
     player->afterburner->active =  player->invmode->isInvisible();
 
 
-    scoreText.setString("Score:"+std::to_string(score));
+    scoreText.setString("Score:"+std::to_string(score)+ " Cash:"+std::to_string(player->cash));
     trailtext.setString("Health: "+ std::to_string(player->health->getHealthPercent())+ "%");
 
     if(!player->health->isAlife())
@@ -81,6 +125,7 @@ void MainGame::draw(sf::RenderWindow &window) {
         f.draw(window);
     }
     invis.draw(window);
+    coin.draw(window);
     window.draw(scoreText);
     window.draw(trailtext);
     window.display();
@@ -91,40 +136,7 @@ void MainGame::inputs() {
     player->transform->setY(sf::Mouse::getPosition(*m_window).y);
 }
 
-MainGame::MainGame(Statemachine* st,sf::RenderWindow &window) : State(st) {
-    newBackground.start(window);
-    font.loadFromFile("data/Fonts/JetBrainsMono-Bold.ttf");
-    scoreText.setFont(font);
-    trailtext.setFont(font);
-    scoreText.setCharacterSize(window.getSize().x*0.07f);
-    trailtext.setCharacterSize(window.getSize().x*0.05f);
-    trailtext.setPosition(0.f,window.getSize().x*0.08f);
-    scoreText.setFillColor(sf::Color::Yellow);
-    trailtext.setFillColor(sf::Color::Magenta);
-    window.setMouseCursorVisible(false);
-    m_window = &window;
-    player = std::make_shared<Player>();
-    player->start();
-    allEntities.push_back(player);
 
-    invis.transform->setX(rand()%window.getSize().x);
-    invis.transform->setY(0.f);
-    for(auto& e:allEnemies)
-    {
-        e.start();
-        e.transform->setX(rand()%window.getSize().x);
-    }
-    for(auto& f:powerups)
-    {
-        f.transform->setX(rand()%window.getSize().x);
-        f.mover->speed = 200.f;
-    }
-
-}
-
-MainGame::~MainGame() {
-    std::cout << "Main Game goes out of scope" << std::endl;
-}
 
 float MainGame::getAddSpeed(int stage, float max_speed_control, float offset) {
     return offset+log10(stage)*max_speed_control;

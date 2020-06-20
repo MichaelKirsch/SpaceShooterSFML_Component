@@ -58,6 +58,7 @@ public:
     std::shared_ptr<EnergyCore> energycore;
     std::shared_ptr<Aura> aura;
     std::shared_ptr<InvisibiltyMode> invmode;
+    int cash=0;
 };
 
 

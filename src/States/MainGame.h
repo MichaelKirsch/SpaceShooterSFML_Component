@@ -9,6 +9,7 @@
 #include <cmath>
 #include "Entities/InvisibleToken.h"
 #include "Entities/SpaceBackground.h"
+#include "Entities/Coins.h"
 
 
 class MainGame : public State {
@@ -30,6 +31,7 @@ private:
     std::array<Enemy,6> allEnemies;
     std::vector<std::shared_ptr<Entity>> allEntities;
     std::array<HealthPowerUp,1> powerups;
+    Coins coin;
     SpaceBackground newBackground;
     InvisibleToken invis;
     int score=0;
