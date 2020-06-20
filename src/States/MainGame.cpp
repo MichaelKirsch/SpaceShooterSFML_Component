@@ -12,9 +12,7 @@ MainGame::MainGame(Statemachine* st,sf::RenderWindow &window) : State(st) {
     trailtext.setFillColor(sf::Color::Magenta);
     window.setMouseCursorVisible(false);
     m_window = &window;
-    player = std::make_shared<Player>();
-    player->start();
-    allEntities.push_back(player);
+    player.start(window);
     coin.start(Coins::CoinType::BRONZE,window);
     invis.transform->setX(rand()%window.getSize().x);
     invis.transform->setY(0.f);
@@ -37,29 +35,29 @@ MainGame::~MainGame() {
 
 
 void MainGame::update(float deltaTime) {
-    player->update(deltaTime);
-    player->lateUpdate(deltaTime);
+    player.update(deltaTime);
+    player.lateUpdate(deltaTime);
     coin.update(deltaTime);
 
     if(coin.transform->getY()>m_window->getSize().y)
         coin.transform->setPosition(rand()%m_window->getSize().x,0.f);
-    if(coin.hitbox->AABBCollisionTest(player->hitbox))
+    if(coin.hitbox->AABBCollisionTest(player.hitbox))
     {
         coin.transform->setPosition(rand()%m_window->getSize().x,0.f);
-        player->cash+=coin.getValue();
+        player.cash+=coin.getValue();
     }
-    if(player->transform->getY()<0.f || player->transform->getY()>m_window->getSize().y ||
-    player->transform->getX()<0.f ||player->transform->getX()>m_window->getSize().x)
-        player->health->inflictDamagePercent(1.f);
+    if(player.transform->getY()<0.f || player.transform->getY()>m_window->getSize().y ||
+    player.transform->getX()<0.f ||player.transform->getX()>m_window->getSize().x)
+        player.health->inflictDamagePercent(1.f);
 
     for(auto& e:allEnemies)
     {
         e.update(deltaTime);
-        if(!player->invmode->isInvisible())
-            if(e.hitbox->AABBCollisionTest(player->hitbox))
+        if(!player.invmode->isInvisible())
+            if(e.hitbox->AABBCollisionTest(player.hitbox))
             {
                 e.transform->setPosition(rand()%m_window->getSize().x,0.f);
-                player->health->inflictDamagePercent(25);
+                player.health->inflictDamagePercent(25);
             }
         if(e.transform->getY()>m_window->getSize().y)
         {
@@ -71,9 +69,9 @@ void MainGame::update(float deltaTime) {
     for(auto& f:powerups)
     {
         f.update(deltaTime);
-        if(f.hitbox->AABBCollisionTest(player->hitbox))
+        if(f.hitbox->AABBCollisionTest(player.hitbox))
         {
-            player->health->rechargePercent(10);
+            player.health->rechargePercent(10);
             f.transform->setPosition(rand()%m_window->getSize().x,0.f);
         }
 
@@ -86,19 +84,19 @@ void MainGame::update(float deltaTime) {
     invis.update(deltaTime);
     if(invis.transform->getY()>m_window->getSize().y)
         invis.transform->setPosition(rand()%m_window->getSize().x,-rand()%1000);
-    if(invis.hitbox->AABBCollisionTest(player->hitbox))
+    if(invis.hitbox->AABBCollisionTest(player.hitbox))
     {
-        player->invmode->trigger();
+        player.invmode->trigger();
         invis.transform->setPosition(rand()%m_window->getSize().x,-rand()%1000);
     }
-    player->aura->active = player->invmode->isInvisible();
-    player->afterburner->active =  player->invmode->isInvisible();
+    player.aura->active = player.invmode->isInvisible();
+    player.afterburner->active =  player.invmode->isInvisible();
 
 
-    scoreText.setString("Score:"+std::to_string(score)+ " Cash:"+std::to_string(player->cash));
-    trailtext.setString("Health: "+ std::to_string(player->health->getHealthPercent())+ "%");
+    scoreText.setString("Score:"+std::to_string(score)+ " Cash:"+std::to_string(player.cash));
+    trailtext.setString("Health: "+ std::to_string(player.health->getHealthPercent())+ "%");
 
-    if(!player->health->isAlife())
+    if(!player.health->isAlife())
     {
         auto s = std::make_shared<TestState>(stm,*m_window);
         s->score = score;
@@ -112,8 +110,7 @@ void MainGame::draw(sf::RenderWindow &window) {
 
     newBackground.draw(window);
 
-    for(auto& e:allEntities)
-        e->draw(window);
+    player.draw(window);
 
     for(auto& e:allEnemies)
     {
@@ -132,8 +129,8 @@ void MainGame::draw(sf::RenderWindow &window) {
 }
 
 void MainGame::inputs() {
-    player->transform->setX(sf::Mouse::getPosition(*m_window).x);
-    player->transform->setY(sf::Mouse::getPosition(*m_window).y);
+    player.transform->setX(sf::Mouse::getPosition(*m_window).x);
+    player.transform->setY(sf::Mouse::getPosition(*m_window).y);
 }
 
 

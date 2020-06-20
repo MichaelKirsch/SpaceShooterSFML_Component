@@ -7,7 +7,7 @@
 void Coins::start(Coins::CoinType i_type, sf::RenderWindow &window) {
     sprite->start();
     sprite->load("data/Coins/Coins-PNG.png");
-    sprite->setSize({window.getSize().x*0.05f,window.getSize().y*0.05f});
+    sprite->setSize({window.getSize().x*0.04f,window.getSize().y*0.04f});
     animation->start(sprite);
     mover->start({0.f,1.f},100.f);
     switch (i_type) {
