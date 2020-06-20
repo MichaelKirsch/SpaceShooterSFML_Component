@@ -4,6 +4,8 @@
 
 #include "EnergyCore.h"
 
+
+
 EnergyCore::EnergyCore(Entity *owner) : Component(owner) {}
 
 void EnergyCore::start()
@@ -12,11 +14,12 @@ void EnergyCore::start()
     ownerHealth = owner->GetComponent<Health>();
     sizeOfOwner = owner->GetComponent<SimpleSprite>()->getSize();
     m_core = owner->AddComponent<SimpleSprite>();
+    m_core->draw_order = 3;
     m_core->setSize({0.25f * sizeOfOwner.x, 0.25f * sizeOfOwner.y});
     m_core->load("data/Core.png");
-    m_core->setOffset({sizeOfOwner.x / 2, 0.7f * sizeOfOwner.y});
+    m_core->setOffset({sizeOfOwner.x / 2 - m_core->getSize().x / 2, 0.5f * sizeOfOwner.y});
     setColorForeground(sf::Color(0, 220, 0, 255));
-    foreground.setRadius( m_core->getSize().x / 2);
+    foreground.setRadius(m_core->getSize().x / 2);
 }
 
 void EnergyCore::setColorForeground(sf::Color color) {
@@ -29,7 +32,7 @@ void EnergyCore::update(float deltaTime) {
     actualHealthRaw = ownerHealth->getHealthRaw();
     if(actualHealthPercent==0)
         active = false;
-    foreground.setPosition(owner->transform->getPosition().x + sizeOfOwner.x / 2, owner->transform->getY() - (0.6f*m_core->getSize().y));
+    foreground.setPosition(owner->transform->getPosition().x + sizeOfOwner.x / 2 - foreground.getRadius(), owner->transform->getY() + (0.5f*sizeOfOwner.y));
     actualHealthPercent = ownerHealth->getHealthPercent();
     actualHealthRaw = ownerHealth->getHealthRaw();
     setColorForeground({0, 220, 0, sf::Uint8(255-(actualHealthPercent * 255))});

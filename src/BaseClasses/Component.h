@@ -14,6 +14,7 @@ public:
     virtual void update(float deltaTime) {};
     virtual void lateUpdate(float deltaTime) {};
     virtual void draw(sf::RenderWindow& window) {};
+
     int draw_order=0;
     bool active = true;
 protected:
