@@ -10,8 +10,6 @@ Healthbar::Healthbar(Entity *owner) : Component(owner) {
 
 void Healthbar::start(sf::Color i_backgroundColor, sf::Color i_foregroundColor) {
 
-
-
     setColorForeground(i_foregroundColor);
     foreground.setSize({10,10});
     
