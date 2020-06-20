@@ -37,6 +37,8 @@ void EnergyCore::update(float deltaTime) {
     actualHealthRaw = ownerHealth->getHealthRaw();
     setColorForeground({0, 220, 0, sf::Uint8(255*(ownerHealth->getHealthPercent()*0.01f))});
     m_core.setPosition({owner->transform->getPosition().x + sizeOfOwner.x / 2 - foreground.getRadius(), owner->transform->getY() + (0.5f*sizeOfOwner.y)});
+    if(ownerHealth->getHealthPercent()<10.f)
+        ownerHealth->inflictDamagePercent(0.01f);
 }
 
 void EnergyCore::draw(sf::RenderWindow &window) {
