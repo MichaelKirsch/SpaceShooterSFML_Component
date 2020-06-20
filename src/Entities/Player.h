@@ -22,7 +22,7 @@ public:
         energycore = AddComponent<EnergyCore>();
         hitbox = AddComponent<Hitbox>();
         sprite->setSize({100,100});
-        sprite->load("data/rocket.png");
+        sprite->load("data/Spaceship_tut.png");
         key = AddComponent<KeyboardMover>();
         effect = AddComponent<ParticleEffect>();
         health = AddComponent<Health>();

@@ -6,7 +6,7 @@
 
 void SpaceBackground::start(sf::RenderWindow &window) {
     sprite->setSize({float(window.getSize().x), float(window.getSize().y)});
-    sprite->load("data/spacebackground.jpg");
+    sprite->load("data/grad.png");
 
 }
 
