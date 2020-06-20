@@ -44,7 +44,7 @@ public:
         afterburner->active = false;
         hitbox->start(sprite->getSize());
         aura->start();
-        invmode->start(1.f);
+        invmode->start(5.f);
         invmode->trigger();
     };
 

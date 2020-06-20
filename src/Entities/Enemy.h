@@ -5,6 +5,7 @@
 #include "LinearMover.h"
 #include "Health.h"
 #include "Healthbar.h"
+#include "Animation.h"
 class Enemy : public Entity {
 public:
     Enemy(){
@@ -19,12 +20,15 @@ public:
         particles->start(10,{255, 15, 15},{255, 36, 242},0.07f,0.03f);
         particles->gravity_direction={0.f,-1.f};
         particles->offset = body->getSize()/2.f;
-
+        animation = AddComponent<Animation>();
+        animation->start(body);
+        animation->configureTextureAtlas("data/Coins/coins_gold_atlas.png",{3,3},0.1f,1);
     };
     std::shared_ptr<Hitbox> hitbox;
     std::shared_ptr<ParticleEffect> particles;
     std::shared_ptr<SimpleSprite> body;
     std::shared_ptr<LinearMover> mover;
+    std::shared_ptr<Animation> animation;
 private:
 };
 

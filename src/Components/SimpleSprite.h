@@ -33,6 +33,10 @@ public:
 
     void update(float deltaTime) override;
 
+    sf::RectangleShape& getRect(){
+        return sprite;
+    }
+
 private:
     sf::Vector2f offset={0.f,0.f};
     sf::Texture texture;
