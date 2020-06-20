@@ -1,6 +1,5 @@
 #pragma once
 #include "Entity.h"
-#include "SimpleSprite.h"
 #include "Hitbox.h"
 #include "ParticleEffect.h"
 #include "LinearMover.h"

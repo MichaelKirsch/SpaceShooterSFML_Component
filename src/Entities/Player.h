@@ -9,6 +9,7 @@
 #include "Healthbar.h"
 #include "Aura.h"
 #include "InvisibiltyMode.h"
+#include "EnergyCore.h"
 
 class Player : public Entity{
 public:
@@ -29,6 +30,8 @@ public:
         effect->offset = {sprite->getSize().x/2,sprite->getSize().y};
         healthbar = AddComponent<Healthbar>();
         healthbar->start(); //
+        energycore = AddComponent<EnergyCore>();
+        energycore->start();
         afterburner = AddComponent<ParticleEffect>();
         afterburner->start(50,{194, 244, 255},{36, 217, 255},0.06f,0.05f);
         afterburner->offset = {sprite->getSize().x/2,sprite->getSize().y/2.f};
@@ -52,6 +55,7 @@ public:
     std::shared_ptr<Hitbox> hitbox;
     std::shared_ptr<Health> health;
     std::shared_ptr<Healthbar> healthbar;
+    std::shared_ptr<EnergyCore> energycore;
     std::shared_ptr<Aura> aura;
     std::shared_ptr<InvisibiltyMode> invmode;
 };
