@@ -15,9 +15,10 @@ public:
     void update(float deltaTime) override;
     void lateUpdate(float deltaTime) override;
     void draw(sf::RenderWindow &window) override;
-
+    sf::Vector2f offset={0.f,0.f};
 
 private:
+
     sf::RectangleShape m_core;
     sf::Texture m_texture;
     std::shared_ptr<Health> ownerHealth;
