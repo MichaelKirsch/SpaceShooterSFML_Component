@@ -27,10 +27,14 @@ public:
         return texture;
     }
 
+    void setOffset(sf::Vector2f offset_to_owner);
+
+    sf::Vector2f getOffset();
 
     void update(float deltaTime) override;
 
 private:
+    sf::Vector2f offset;
     sf::Texture texture;
     sf::RectangleShape sprite;
 };

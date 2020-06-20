@@ -24,3 +24,11 @@ void SimpleSprite::lateUpdate(float deltaTime) {
 void SimpleSprite::update(float deltaTime) {
     sprite.setPosition(owner->transform->getPosition());
 }
+
+sf::Vector2f SimpleSprite::getOffset() {
+    return offset;
+}
+
+void SimpleSprite::setOffset(sf::Vector2f offset_to_owner) {
+    offset = offset_to_owner;
+}
