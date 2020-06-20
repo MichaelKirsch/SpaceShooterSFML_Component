@@ -4,6 +4,7 @@
 #include "SimpleSprite.h"
 #include "Animation.h"
 #include "Hitbox.h"
+#include "ParticleEffect.h"
 
 class Coins : public Entity {
 public:
@@ -17,6 +18,7 @@ public:
         sprite = AddComponent<SimpleSprite>();
         animation = AddComponent<Animation>();
         hitbox = AddComponent<Hitbox>();
+        effect = AddComponent<ParticleEffect>();
     };
 
     const CoinType& getCoinType()
@@ -31,6 +33,7 @@ public:
     std::shared_ptr<SimpleSprite>sprite;
     std::shared_ptr<Animation> animation;
     std::shared_ptr<Hitbox> hitbox;
+    std::shared_ptr<ParticleEffect> effect;
 private:
     CoinType m_type;
 };

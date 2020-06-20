@@ -14,6 +14,8 @@ MainGame::MainGame(Statemachine* st,sf::RenderWindow &window) : State(st) {
     m_window = &window;
     player.start(window);
     coin.start(Coins::CoinType::BRONZE,window);
+    coin2.start(Coins::CoinType::SILVER,window);
+    coin3.start(Coins::CoinType::GOLD,window);
     invis.transform->setX(rand()%window.getSize().x);
     invis.transform->setY(0.f);
     for(auto& e:allEnemies)
@@ -38,9 +40,17 @@ void MainGame::update(float deltaTime) {
     player.update(deltaTime);
     player.lateUpdate(deltaTime);
     coin.update(deltaTime);
+    coin2.update(deltaTime);
+    coin3.update(deltaTime);
 
     if(coin.transform->getY()>m_window->getSize().y)
         coin.transform->setPosition(rand()%m_window->getSize().x,0.f);
+
+    if(coin2.transform->getY()>m_window->getSize().y)
+        coin2.transform->setPosition(rand()%m_window->getSize().x,0.f);
+    if(coin3.transform->getY()>m_window->getSize().y)
+        coin3.transform->setPosition(rand()%m_window->getSize().x,0.f);
+
     if(coin.hitbox->AABBCollisionTest(player.hitbox))
     {
         coin.transform->setPosition(rand()%m_window->getSize().x,0.f);
@@ -123,6 +133,8 @@ void MainGame::draw(sf::RenderWindow &window) {
     }
     invis.draw(window);
     coin.draw(window);
+    coin2.draw(window);
+    coin3.draw(window);
     window.draw(scoreText);
     window.draw(trailtext);
     window.display();

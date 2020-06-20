@@ -24,7 +24,7 @@ void ParticleEffect::draw(sf::RenderWindow &window) {
             window.draw(p.body);
 }
 
-void ParticleEffect::start(int number, sf::Color beg, sf::Color end, float life_max, float life_min) {
+void ParticleEffect::start(int number, sf::Color beg, sf::Color end, float life_max, float life_min,sf::Vector2f size) {
     m_particles.reserve(number);
     m_particles.resize(number);
     begin_color = beg;
@@ -37,7 +37,9 @@ void ParticleEffect::start(int number, sf::Color beg, sf::Color end, float life_
     for(auto& p:m_particles)
     {
         respawm(p);
+
     }
+    setParticleSize(size);
 }
 
 void ParticleEffect::respawm(Particle &p) {
@@ -47,7 +49,7 @@ void ParticleEffect::respawm(Particle &p) {
     difference_color.g *=(rand()%100)*0.01f;
     difference_color.b *=(rand()%100)*0.01f;
     p.body.setFillColor(begin_color+difference_color);
-    p.body.setSize({10.f,10.f});
+    p.body.setSize(partice_size);
     p.body.setPosition(owner->transform->getPosition()+offset);
     p.position = owner->transform->getPosition()+offset;
     p.gravity = gravity_direction;
@@ -58,4 +60,8 @@ void ParticleEffect::respawm(Particle &p) {
     p.lifetime = lifetime_min +((rand()%100)*0.01f)*(lifetime_min +lifetime_max);
     p.alife = true;
     p.time_alife = 0.f;
+}
+
+void ParticleEffect::setParticleSize(sf::Vector2f size) {
+    partice_size = size;
 }

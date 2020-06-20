@@ -27,7 +27,7 @@ class ParticleEffect : public Component{
 public:
     ParticleEffect(Entity* owner);
 
-    void start(int number, sf::Color beg, sf::Color end, float life_max, float life_min);
+    void start(int number, sf::Color beg, sf::Color end, float life_max, float life_min,sf::Vector2f size={10.f,10.f});
     void update(float deltaTime) override;
 
     void draw(sf::RenderWindow &window) override;
@@ -42,9 +42,10 @@ public:
     float gravity;
     sf::Vector2f gravity_direction;
     sf::Vector2f offset;
+    void setParticleSize(sf::Vector2f size);
 
 private:
-
+    sf::Vector2f partice_size;
     void respawm(Particle& p);
 
     std::vector<Particle> m_particles;

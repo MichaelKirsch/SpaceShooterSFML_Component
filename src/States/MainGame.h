@@ -31,7 +31,7 @@ private:
     std::array<Enemy,6> allEnemies;
     std::vector<std::shared_ptr<Entity>> allEntities;
     std::array<HealthPowerUp,1> powerups;
-    Coins coin;
+    Coins coin,coin2,coin3;
     SpaceBackground newBackground;
     InvisibleToken invis;
     int score=0;
