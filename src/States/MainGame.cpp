@@ -47,7 +47,7 @@ void MainGame::update(float deltaTime) {
         player->invmode->trigger();
         invis.transform->setPosition(rand()%m_window->getSize().x,-rand()%1000);
     }
-
+    player->aura->active = player->invmode->isInvisible();
     player->afterburner->active =  player->invmode->isInvisible();
 
 

@@ -41,9 +41,8 @@ void EnergyCore::update(float deltaTime) {
 
 void EnergyCore::draw(sf::RenderWindow &window) {
     if(active){
-
-        window.draw(foreground);
         window.draw(m_core);
+        window.draw(foreground);
     }
 }
 

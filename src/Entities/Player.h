@@ -35,7 +35,7 @@ public:
         effect2->gravity_direction = {0.f,6.f};
         effect2->offset = {sprite->getSize().x/2,sprite->getSize().y};
         effect->offset = {sprite->getSize().x/2,sprite->getSize().y};
-        healthbar->start(); //
+        healthbar->start();
         energycore->start();
         afterburner->start(50,{194, 244, 255},{36, 217, 255},0.06f,0.05f);
         afterburner->offset = {sprite->getSize().x/2,sprite->getSize().y/2.f};
@@ -44,7 +44,7 @@ public:
         afterburner->active = false;
         hitbox->start(sprite->getSize());
         aura->start();
-        invmode->start(5.f);
+        invmode->start(1.f);
         invmode->trigger();
     };
 
