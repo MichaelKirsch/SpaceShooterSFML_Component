@@ -1,7 +1,7 @@
 #include "MainGame.h"
 
 MainGame::MainGame(Statemachine* st,sf::RenderWindow &window) : State(st) {
-    newBackground.start(window);
+    newBackground.start(window,"data/space-1.png");
     font.loadFromFile("data/Fonts/JetBrainsMono-Bold.ttf");
     scoreText.setFont(font);
     trailtext.setFont(font);

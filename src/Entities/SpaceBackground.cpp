@@ -4,9 +4,9 @@
 
 #include "SpaceBackground.h"
 
-void SpaceBackground::start(sf::RenderWindow &window) {
+void SpaceBackground::start(sf::RenderWindow &window, std::string filename) {
     sprite->setSize({float(window.getSize().x), float(window.getSize().y)});
-    sprite->load("data/grad.png");
+    sprite->load(filename);
 
 }
 

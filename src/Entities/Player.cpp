@@ -25,4 +25,5 @@ void Player::start(sf::RenderWindow &window) {
     aura->start();
     invmode->start(5.f);
     invmode->trigger();
+    gun->loadGun("data/Scripts/shotgun.gun");
 }

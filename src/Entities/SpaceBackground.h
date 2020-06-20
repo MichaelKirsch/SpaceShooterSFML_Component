@@ -14,7 +14,7 @@ public:
     }
     ~SpaceBackground() = default;
 
-    void start(sf::RenderWindow& window);
+    void start(sf::RenderWindow& window, std::string filename);
 
     void draw(sf::RenderWindow &window) override;
 

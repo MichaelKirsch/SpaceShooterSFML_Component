@@ -1,0 +1,12 @@
+{
+    "bullet_texture": "default.png",
+    "spread":0.04,
+    "damage": 10.0,
+    "bulletspeed": 10.0,
+    "firerate": 100,
+    "bulletSizeX": 100,
+    "bulletSizeY": 100,
+    "burstmode": true,
+    "burst_size": 3,
+    "burst_pause": 0.04
+}

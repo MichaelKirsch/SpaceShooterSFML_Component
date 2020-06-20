@@ -10,6 +10,7 @@
 #include "Aura.h"
 #include "InvisibiltyMode.h"
 #include "EnergyCore.h"
+#include "Gun.h"
 
 class Player : public Entity{
 public:
@@ -25,6 +26,7 @@ public:
         effect = AddComponent<ParticleEffect>();
         health = AddComponent<Health>();
         invmode = AddComponent<InvisibiltyMode>();
+        gun = AddComponent<Gun>();
     };
 
     void start(sf::RenderWindow& window);
@@ -41,6 +43,7 @@ public:
     std::shared_ptr<EnergyCore> energycore;
     std::shared_ptr<Aura> aura;
     std::shared_ptr<InvisibiltyMode> invmode;
+    std::shared_ptr<Gun> gun;
     int cash=0;
 };
 
