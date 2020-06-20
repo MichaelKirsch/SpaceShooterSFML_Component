@@ -34,7 +34,7 @@ public:
     void update(float deltaTime) override;
 
 private:
-    sf::Vector2f offset;
+    sf::Vector2f offset={0.f,0.f};
     sf::Texture texture;
     sf::RectangleShape sprite;
 };
