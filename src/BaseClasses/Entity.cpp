@@ -29,10 +29,14 @@ void Entity::lateUpdate(float deltaTime) {
             components[i]->lateUpdate(deltaTime);
 }
 
+
+
 void Entity::draw(sf::RenderWindow &window) {
-    for(int i = components.size() - 1; i >= 0; i--)
-        if(components[i]->active)
-            components[i]->draw(window);
+    for(auto& c:components)
+        c->draw(window);
+    //for(int i = components.size() - 1; i >= 0; i--)
+    //    if(components[i]->active)
+    //        components[i]->draw(window);
 }
 
 void Entity::respawn() {

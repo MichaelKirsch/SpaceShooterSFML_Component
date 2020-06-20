@@ -4,6 +4,7 @@
 #include <vector>
 #include <memory>
 #include "Transform.h"
+#include <algorithm>
 class Entity {
 public:
     Entity(){
