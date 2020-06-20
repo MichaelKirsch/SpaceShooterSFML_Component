@@ -18,11 +18,11 @@ SimpleSprite::SimpleSprite(Entity *owner) : Component(owner) {
 }
 
 void SimpleSprite::lateUpdate(float deltaTime) {
-    sprite.setPosition(owner->transform->getPosition());
+    sprite.setPosition(owner->transform->getPosition()+offset);
 }
 
 void SimpleSprite::update(float deltaTime) {
-    sprite.setPosition(owner->transform->getPosition());
+    sprite.setPosition(owner->transform->getPosition()+offset);
 }
 
 sf::Vector2f SimpleSprite::getOffset() {
