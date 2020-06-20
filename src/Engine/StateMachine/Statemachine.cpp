@@ -18,18 +18,18 @@ void Statemachine::run() {
         elapsed = timer.restart().asSeconds();
         frametimer += elapsed;
         ticktimer +=elapsed;
+        if(frametimer>1.f/framerate)
+        {
+            playedState->draw(window);
+            frametimer =0.f;
+            std::this_thread::sleep_for(std::chrono::milliseconds((1000/framerate)));
+        }
         if (ticktimer>1.f/tickrate)
         {
 
             playedState->update(ticktimer);
             playedState->inputs();
             ticktimer = 0.f;
-        }
-        if(frametimer>1.f/framerate)
-        {
-            playedState->draw(window);
-            frametimer =0.f;
-            std::this_thread::sleep_for(std::chrono::milliseconds((1000/framerate)));
         }
         sf::Event e;
         while (window.pollEvent(e))

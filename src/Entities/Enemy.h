@@ -22,7 +22,7 @@ public:
         particles->offset = body->getSize()/2.f;
         animation = AddComponent<Animation>();
         animation->start(body);
-        animation->configureTextureAtlas("data/Coins/coins_gold_atlas.png",{3,3},0.1f,1);
+        animation->configureTextureAtlas("data/Coins/asteroid_grey_atlas.png",{3,5},0.1f,0);
     };
     std::shared_ptr<Hitbox> hitbox;
     std::shared_ptr<ParticleEffect> particles;
