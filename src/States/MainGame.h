@@ -27,7 +27,7 @@ private:
     sf::Text scoreText, trailtext;
     sf::RenderWindow* m_window;
     std::shared_ptr<Player> player;
-    std::array<Enemy,5> allEnemies;
+    std::array<Enemy,6> allEnemies;
     std::vector<std::shared_ptr<Entity>> allEntities;
     std::array<HealthPowerUp,1> powerups;
     SpaceBackground newBackground;

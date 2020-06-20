@@ -11,6 +11,7 @@ StartupScreen::StartupScreen(Statemachine *st, sf::RenderWindow &sf) : State(st)
     text.setCharacterSize(sf.getSize().y*0.05f);
     text.setFillColor(sf::Color::Red);
     text.setString("Welcome to SpaceRace\nPress Left Mouse to start");
+    //m_window->create(sf::VideoMode::getDesktopMode(),"sda0");
 }
 
 void StartupScreen::update(float deltaTime) {
