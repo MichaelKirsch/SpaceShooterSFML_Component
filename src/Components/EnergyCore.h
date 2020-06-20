@@ -1,10 +1,4 @@
-//
-// Created by thewh on 6/20/2020.
-//
-
-#ifndef TEST_ENERGYCORE_H
-#define TEST_ENERGYCORE_H
-
+#pragma once
 #include "Component.h"
 #include "Entity.h"
 #include "SimpleSprite.h"
@@ -39,4 +33,4 @@ private:
 
 
 
-#endif //TEST_ENERGYCORE_H
+
