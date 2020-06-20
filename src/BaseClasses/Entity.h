@@ -20,6 +20,8 @@ public:
 
     virtual void draw(sf::RenderWindow& window);
 
+    virtual void respawn();
+
     template <typename T> std::shared_ptr<T> AddComponent() // 1
     {
         // This ensures that we only try to add a class the derives

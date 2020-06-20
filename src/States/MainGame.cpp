@@ -48,6 +48,8 @@ void MainGame::update(float deltaTime) {
         invis.transform->setPosition(rand()%m_window->getSize().x,-rand()%1000);
     }
 
+    player->afterburner->active =  player->invmode->isInvisible();
+
 
     scoreText.setString("Score:"+std::to_string(score));
     trailtext.setString("Health: "+ std::to_string(player->health->getHealthPercent())+ "%");

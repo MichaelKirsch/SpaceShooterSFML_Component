@@ -34,3 +34,7 @@ void Entity::draw(sf::RenderWindow &window) {
         if(components[i]->active)
             components[i]->draw(window);
 }
+
+void Entity::respawn() {
+
+}

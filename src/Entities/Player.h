@@ -30,9 +30,9 @@ public:
         healthbar = AddComponent<Healthbar>();
         healthbar->start(); //
         afterburner = AddComponent<ParticleEffect>();
-        afterburner->start(50,{231, 250, 0},{250, 209, 0},1.f,0.5f);
-        afterburner->offset = {sprite->getSize().x/2,sprite->getSize().y};
-        afterburner->gravity_direction={0.f,5.f};
+        afterburner->start(50,{194, 244, 255},{36, 217, 255},0.06f,0.05f);
+        afterburner->offset = {sprite->getSize().x/2,sprite->getSize().y/2.f};
+        afterburner->gravity_direction={0.f,0.f};
         afterburner->gravity = 2000.f;
         afterburner->active = false;
         hitbox = AddComponent<Hitbox>();
