@@ -33,6 +33,7 @@ void EnergyCore::update(float deltaTime) {
     if(actualHealthPercent==0)
         active = false;
     foreground.setPosition(owner->transform->getPosition().x + sizeOfOwner.x / 2 - foreground.getRadius(), owner->transform->getY() + (0.5f*sizeOfOwner.y));
+
     actualHealthPercent = ownerHealth->getHealthPercent();
     actualHealthRaw = ownerHealth->getHealthRaw();
     setColorForeground({0, 220, 0, sf::Uint8(255*(ownerHealth->getHealthPercent()*0.01f))});
