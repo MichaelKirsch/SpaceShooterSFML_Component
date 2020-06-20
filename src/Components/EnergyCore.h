@@ -18,8 +18,8 @@ public:
 
 
 private:
-    std::shared_ptr<SimpleSprite> m_core;
-
+    sf::RectangleShape m_core;
+    sf::Texture m_texture;
     std::shared_ptr<Health> ownerHealth;
     std::shared_ptr<ParticleEffect> particles;
 

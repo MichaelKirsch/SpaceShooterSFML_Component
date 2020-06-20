@@ -13,13 +13,13 @@ void EnergyCore::start()
     active = true;
     ownerHealth = owner->GetComponent<Health>();
     sizeOfOwner = owner->GetComponent<SimpleSprite>()->getSize();
-    m_core = owner->AddComponent<SimpleSprite>();
-    m_core->draw_order = 3;
-    m_core->setSize({0.25f * sizeOfOwner.x, 0.25f * sizeOfOwner.y});
-    m_core->load("data/Core.png");
-    m_core->setOffset({sizeOfOwner.x / 2 - m_core->getSize().x / 2, 0.5f * sizeOfOwner.y});
+    m_texture.loadFromFile("data/Core.png");
+
+    m_core.setSize({0.25f * sizeOfOwner.x, 0.25f * sizeOfOwner.y});
+    m_core.setPosition({sizeOfOwner.x / 2 - m_core.getSize().x / 2, 0.5f * sizeOfOwner.y});
+    m_core.setTexture(&m_texture);
     setColorForeground(sf::Color(0, 220, 0, 255));
-    foreground.setRadius(m_core->getSize().x / 2);
+    foreground.setRadius(m_core.getSize().x / 2);
 }
 
 void EnergyCore::setColorForeground(sf::Color color) {
@@ -35,14 +35,15 @@ void EnergyCore::update(float deltaTime) {
     foreground.setPosition(owner->transform->getPosition().x + sizeOfOwner.x / 2 - foreground.getRadius(), owner->transform->getY() + (0.5f*sizeOfOwner.y));
     actualHealthPercent = ownerHealth->getHealthPercent();
     actualHealthRaw = ownerHealth->getHealthRaw();
-    setColorForeground({0, 220, 0, sf::Uint8(255-(actualHealthPercent * 255))});
-    m_core->update(deltaTime);
+    setColorForeground({0, 220, 0, sf::Uint8(255*(ownerHealth->getHealthPercent()*0.01f))});
+    m_core.setPosition(owner->transform->getPosition());
 }
 
 void EnergyCore::draw(sf::RenderWindow &window) {
     if(active){
-        m_core->draw(window);
+
         window.draw(foreground);
+        window.draw(m_core);
     }
 }
 
