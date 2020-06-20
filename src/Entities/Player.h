@@ -47,7 +47,6 @@ public:
         invmode->start(5.f);
         invmode->trigger();
     };
-
     std::shared_ptr<SimpleSprite> sprite;
     std::shared_ptr<KeyboardMover> key;
     std::shared_ptr<ParticleEffect> effect;

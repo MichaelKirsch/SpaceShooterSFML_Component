@@ -5,6 +5,7 @@
 #include "Statemachine.h"
 #include "States/MainGame.h"
 #include "States/StartupScreen.h"
+#include <thread>
 
 void Statemachine::run() {
     elapsed = 0.f;
@@ -28,8 +29,8 @@ void Statemachine::run() {
         {
             playedState->draw(window);
             frametimer =0.f;
+            std::this_thread::sleep_for(std::chrono::milliseconds((1000/framerate)));
         }
-
         sf::Event e;
         while (window.pollEvent(e))
             if(e.type == sf::Event::Closed)
