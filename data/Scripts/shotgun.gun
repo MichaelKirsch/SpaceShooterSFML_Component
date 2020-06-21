@@ -1,12 +1,13 @@
 {
-    "bullet_texture": "default.png",
+    "bullet_texture": "data/rocket.png",
     "spread":0.04,
     "damage": 10.0,
-    "bulletspeed": 10.0,
+    "bulletspeed": 600.0,
     "firerate": 100,
-    "bulletSizeX": 100,
-    "bulletSizeY": 100,
+    "bulletSizeX": 10,
+    "bulletSizeY": 10,
     "burstmode": true,
     "burst_size": 3,
-    "burst_pause": 0.04
+    "burst_pause": 0.04,
+    "ammo" : 1000
 }

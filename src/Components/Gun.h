@@ -10,6 +10,19 @@ using namespace nlohmann;
 
 struct Bullet
 {
+    Bullet(sf::Texture& tx,sf::Vector2f bullet_size,sf::Vector2f i_pos, sf::Vector2f i_direction,
+            float i_damage,float i_lifetime, float i_speed)
+    {
+        damage = i_damage;
+        timer=0.f;
+        lifetime = i_lifetime;
+        speed = i_speed;
+        position = i_pos;
+        direction = i_direction;
+        bullet_body.setSize(bullet_size);
+        bullet_body.setTexture(&tx);
+        bullet_body.setPosition(i_pos);
+    }
     sf::RectangleShape bullet_body;
     sf::Vector2f position;
     sf::Vector2f direction;
@@ -22,9 +35,11 @@ struct Bullet
     {
         return timer<lifetime;
     }
-    void update_timer(float deltatime)
+    void update(float deltatime)
     {
         timer+=deltatime;
+        position +=(direction*speed)*deltatime;
+        bullet_body.setPosition(position);
     }
 };
 
@@ -48,19 +63,20 @@ public:
 
     void update(float deltaTime) override;
 
-    void lateUpdate(float deltaTime) override;
-
     void draw(sf::RenderWindow &window) override;
 
     void loadGun(std::string gun_script);
 
     bool check_for_hitbox(Hitbox& otherBox);
 
+    sf::Vector2f offset={0.f,0.f};
 private:
     sf::Vector2f position;
     GunStats c;
     sf::Texture bullet_texture;
     std::vector<std::unique_ptr<Bullet>> bullet_pool;
+    float last_fired=0.f;
+    int ammo=0;
 };
 
 
