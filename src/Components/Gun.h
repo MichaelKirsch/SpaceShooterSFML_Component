@@ -5,6 +5,7 @@
 #include <fstream>
 #include <iostream>
 #include "Hitbox.h"
+#include "Health.h"
 
 using namespace nlohmann;
 
@@ -30,7 +31,7 @@ struct Bullet
     float lifetime;
     float timer;
     float speed;
-    bool active;
+    bool active=true;
     bool checkTimer()
     {
         return timer<lifetime;
@@ -65,9 +66,11 @@ public:
 
     void draw(sf::RenderWindow &window) override;
 
+    bool check_for_hitbox(std::shared_ptr<Hitbox> box,std::shared_ptr<Health> health);
+
     void loadGun(std::string gun_script,sf::RenderWindow& window);
 
-    bool check_for_hitbox(Hitbox& otherBox);
+
     int getAmmo(){return ammo;};
     sf::Vector2f offset={0.f,0.f};
 private:

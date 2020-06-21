@@ -30,7 +30,7 @@ void Gun::update(float deltaTime) {
     for(auto it = std::begin(bullet_pool); it != std::end(bullet_pool); ) {
         auto& pr = *it;
         // ...
-        if(!pr->checkTimer()) {
+        if(!pr->checkTimer()|| !pr->active) {
             it = bullet_pool.erase(it);
         } else {
             ++it;
@@ -61,3 +61,14 @@ void Gun::loadGun(std::string gun_script,sf::RenderWindow& window) {
     bullet_texture.loadFromFile(c.bullet_image_string);
     ammo = j.at("ammo");
 }
+
+bool Gun::check_for_hitbox(std::shared_ptr<Hitbox> box, std::shared_ptr<Health> health) {
+    for(auto& b:bullet_pool)
+        if(box->hitbox.getGlobalBounds().intersects(b->bullet_body.getGlobalBounds()))
+        {
+            b->active=false;
+            health->inflictDamageRaw(b->damage);
+        }
+}
+
+

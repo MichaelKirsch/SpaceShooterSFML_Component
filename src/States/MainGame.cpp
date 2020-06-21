@@ -65,16 +65,21 @@ void MainGame::update(float deltaTime) {
     for(auto& e:allEnemies)
     {
         e.update(deltaTime);
+
+        player.gun->check_for_hitbox(e.hitbox,e.health);
+
+
         if(!player.invmode->isInvisible())
             if(e.hitbox->AABBCollisionTest(player.hitbox))
             {
                 e.transform->setPosition(rand()%m_window->getSize().x,0.f);
                 player.health->inflictDamagePercent(25);
             }
-        if(e.transform->getY()>m_window->getSize().y)
+        if(e.transform->getY()>m_window->getSize().y || !e.health->isAlife())
         {
             e.transform->setPosition(rand()%m_window->getSize().x,0.f);
             e.mover->speed=getAddSpeed(score,max_speed_var,startSpeed);
+            e.health->rechargePercent(100);
             score++;
         }
     }
