@@ -14,7 +14,8 @@ public:
 private:
     sf::RenderWindow* m_window;
     sf::Font font;
-    sf::Text text;
+    sf::Text text,nametext;
+    std::string name="";
 };
 
 

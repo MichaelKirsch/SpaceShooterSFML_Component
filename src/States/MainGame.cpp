@@ -1,7 +1,7 @@
 #include "MainGame.h"
 
 MainGame::MainGame(Statemachine* st,sf::RenderWindow &window) : State(st) {
-    connected=(l_socket.connect(IPADDRESS, PORT) == sf::Socket::Done);
+
     newBackground.start(window,"data/space-1.png");
     newPlanet.start(window);
     font.loadFromFile("data/Fonts/JetBrainsMono-Bold.ttf");
@@ -39,17 +39,6 @@ MainGame::~MainGame() {
 
 
 void MainGame::update(float deltaTime) {
-
-    if(connected)
-    {
-        sf::Packet packetSend;
-        std::string to_send;
-        to_send+="Ammo:"+std::to_string(player.gun->getAmmo());
-        to_send+=",PlayerPos:"+std::to_string(player.transform->getPosition().x)+","+std::to_string(player.transform->getPosition().y);
-        packetSend<<to_send;
-        l_socket.send(packetSend);
-    }
-
 
     newPlanet.update(deltaTime);
     player.update(deltaTime);
@@ -161,6 +150,12 @@ void MainGame::draw(sf::RenderWindow &window) {
     window.draw(scoreText);
     window.draw(trailtext);
     window.display();
+
+    sf::Event e;
+    while (window.pollEvent(e))
+        if(e.type == sf::Event::Closed)
+            window.close();
+
 }
 
 void MainGame::inputs() {

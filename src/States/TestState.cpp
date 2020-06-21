@@ -6,6 +6,20 @@
 
 void TestState::update(float deltaTime) {
     text.setString("Endscore:"+std::to_string(score));
+    if(!done)
+    {
+        done =true;
+        connected=(l_socket.connect(IPADDRESS, PORT) == sf::Socket::Done);
+        if(connected)
+        {
+            sf::Packet packetSend;
+            std::string to_send;
+            to_send+="Score:"+std::to_string(score);
+            packetSend<<to_send;
+            l_socket.send(packetSend);
+        }
+    }
+
 }
 
 void TestState::draw(sf::RenderWindow &window) {
@@ -13,6 +27,10 @@ void TestState::draw(sf::RenderWindow &window) {
     window.draw(rect);
     window.draw(text);
     window.display();
+    sf::Event e;
+    while (window.pollEvent(e))
+        if(e.type == sf::Event::Closed)
+            window.close();
 }
 
 void TestState::inputs() {
@@ -35,6 +53,7 @@ TestState::TestState(Statemachine *st, sf::RenderWindow &window) : State(st){
     text.setFont(font);
     text.setCharacterSize(window.getSize().y*0.05f);
     text.setFillColor(sf::Color::Red);
+
 }
 
 TestState::~TestState() {

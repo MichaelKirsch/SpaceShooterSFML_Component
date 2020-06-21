@@ -31,10 +31,6 @@ void Statemachine::run() {
             playedState->inputs();
             ticktimer = 0.f;
         }
-        sf::Event e;
-        while (window.pollEvent(e))
-            if(e.type == sf::Event::Closed)
-                window.close();
         if(nextState !=playedState)
             playedState = nextState;
     }
