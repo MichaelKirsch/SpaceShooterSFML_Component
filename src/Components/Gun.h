@@ -4,6 +4,7 @@
 #include "json.hpp"
 #include <fstream>
 #include <iostream>
+#include "Hitbox.h"
 
 using namespace nlohmann;
 
@@ -53,12 +54,13 @@ public:
 
     void loadGun(std::string gun_script);
 
+    bool check_for_hitbox(Hitbox& otherBox);
 
 private:
     sf::Vector2f position;
     GunStats c;
     sf::Texture bullet_texture;
-    std::array<Bullet,20> bulletpool;
+    std::vector<std::unique_ptr<Bullet>> bullet_pool;
 };
 
 
