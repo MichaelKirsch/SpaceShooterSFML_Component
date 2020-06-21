@@ -69,6 +69,7 @@ bool Gun::check_for_hitbox(std::shared_ptr<Hitbox> box, std::shared_ptr<Health> 
         {
             b->active=false;
             health->inflictDamageRaw(b->damage);
+            return health->isAlife();
         }
 }
 

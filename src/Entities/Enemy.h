@@ -25,8 +25,6 @@ public:
         animation->configureTextureAtlas("data/Coins/asteroid_grey_atlas.png",{3,5},0.1f,0);
         health = AddComponent<Health>();
         health->start(150);
-        bar = AddComponent<Healthbar>();
-        bar->start();
     };
     std::shared_ptr<Hitbox> hitbox;
     std::shared_ptr<ParticleEffect> particles;
@@ -34,7 +32,6 @@ public:
     std::shared_ptr<LinearMover> mover;
     std::shared_ptr<Animation> animation;
     std::shared_ptr<Health> health;
-    std::shared_ptr<Healthbar> bar;
 private:
 };
 
