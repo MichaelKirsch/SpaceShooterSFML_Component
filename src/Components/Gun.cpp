@@ -45,7 +45,7 @@ void Gun::draw(sf::RenderWindow &window) {
         window.draw(b->bullet_body);
 }
 
-void Gun::loadGun(std::string gun_script) {
+void Gun::loadGun(std::string gun_script,sf::RenderWindow& window) {
     json j;
     std::ifstream o(gun_script);
     o>>j;
@@ -53,8 +53,8 @@ void Gun::loadGun(std::string gun_script) {
     c.bullet_image_string = j.at("bullet_texture");
     c.bullet_speed = j.at("bulletspeed");
     c.damage = j.at("damage");
-    c.bullet_size.x = j.at("bulletSizeX");
-    c.bullet_size.y = j.at("bulletSizeY");
+    c.bullet_size.x = float(j.at("bulletSizeX"))* window.getSize().y;
+    c.bullet_size.y = float(j.at("bulletSizeY"))* window.getSize().y;
     c.spread = j.at("spread");
     c.burst_size = j.at("burst_size");
     c.burstmode_pause = j.at("burst_pause");

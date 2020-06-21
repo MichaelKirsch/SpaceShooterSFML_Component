@@ -65,10 +65,10 @@ public:
 
     void draw(sf::RenderWindow &window) override;
 
-    void loadGun(std::string gun_script);
+    void loadGun(std::string gun_script,sf::RenderWindow& window);
 
     bool check_for_hitbox(Hitbox& otherBox);
-
+    int getAmmo(){return ammo;};
     sf::Vector2f offset={0.f,0.f};
 private:
     sf::Vector2f position;

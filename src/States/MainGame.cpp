@@ -106,8 +106,8 @@ void MainGame::update(float deltaTime) {
     player.smoke->active = player.health->getHealthPercent()<10.f;
 
     scoreText.setString("Score:"+std::to_string(score)+ " Cash:"+std::to_string(player.cash));
-    player.health_text->setText("Health: "+ std::to_string(player.health->getHealthPercent())+ "%");
-
+    //player.health_text->setText("Health: "+ std::to_string(player.health->getHealthPercent())+ "%");
+    player.health_text->setText("AMMO: "+ std::to_string(player.gun->getAmmo()));
     if(!player.health->isAlife())
     {
         auto s = std::make_shared<TestState>(stm,*m_window);

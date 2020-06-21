@@ -25,7 +25,7 @@ void Player::start(sf::RenderWindow &window) {
     aura->start();
     invmode->start(5.f);
     invmode->trigger();
-    gun->loadGun("data/Scripts/shotgun.gun");
+    gun->loadGun("data/Scripts/shotgun.gun",window);
     gun->offset = {sprite->getSize().x/2.f,0.f};
     smoke->load("data/PNG/Black Smoke/blackSmoke00.png");
     smoke->setSize({sprite->getSize().x,sprite->getSize().y});
