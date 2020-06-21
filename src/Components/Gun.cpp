@@ -13,9 +13,9 @@ void Gun::update(float deltaTime) {
     last_fired+=deltaTime;
     if(sf::Mouse::isButtonPressed(sf::Mouse::Left))
     {
-        if(last_fired>float(1.f/c.firerate)&& ammo>0)
+        if(last_fired>float(1.f/c.firerate)&& current_ammo>0)
         {
-            ammo--;
+            current_ammo--;
             bullet_pool.emplace_back(new Bullet(bullet_texture,c.bullet_size,position
                     ,{0.f,-1.f},c.damage,1.5f,c.bullet_speed));
             last_fired=0.f;
@@ -59,7 +59,8 @@ void Gun::loadGun(std::string gun_script,sf::RenderWindow& window) {
     c.burst_size = j.at("burst_size");
     c.burstmode_pause = j.at("burst_pause");
     bullet_texture.loadFromFile(c.bullet_image_string);
-    ammo = j.at("ammo");
+    ammo_cap = j.at("ammo");
+    current_ammo= ammo_cap;
 }
 
 bool Gun::check_for_hitbox(std::shared_ptr<Hitbox> box, std::shared_ptr<Health> health) {

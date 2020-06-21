@@ -1,7 +1,7 @@
 {
     "bullet_texture": "data/rocket.png",
     "spread":0.04,
-    "damage": 10.0,
+    "damage": 20.0,
     "bulletspeed": 600.0,
     "firerate": 100,
     "bulletSizeX": 0.01,

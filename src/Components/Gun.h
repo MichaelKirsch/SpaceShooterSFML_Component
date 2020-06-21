@@ -71,7 +71,15 @@ public:
     void loadGun(std::string gun_script,sf::RenderWindow& window);
 
 
-    int getAmmo(){return ammo;};
+    int getAmmo(){return current_ammo;};
+
+    void restockAmmo(int percent)
+    {
+        current_ammo+= ammo_cap*(percent*0.01f);
+        if(current_ammo>ammo_cap)
+            current_ammo=ammo_cap;
+    }
+
     sf::Vector2f offset={0.f,0.f};
 private:
     sf::Vector2f position;
@@ -79,7 +87,8 @@ private:
     sf::Texture bullet_texture;
     std::vector<std::unique_ptr<Bullet>> bullet_pool;
     float last_fired=0.f;
-    int ammo=0;
+    int current_ammo=0;
+    int ammo_cap;
 };
 
 

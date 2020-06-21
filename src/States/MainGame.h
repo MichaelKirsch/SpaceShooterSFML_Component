@@ -37,7 +37,7 @@ private:
     Planet newPlanet;
     InvisibleToken invis;
     int score=0;
-    const float max_speed_var = 400.f;
+    const float max_speed_var = 300.f;
     const float startSpeed = 200.f;
     float getAddSpeed(int stage,float max_speed_control, float offset);
 };

@@ -46,7 +46,9 @@ void MainGame::update(float deltaTime) {
     coin3.update(deltaTime);
 
     if(coin.transform->getY()>m_window->getSize().y)
+    {
         coin.transform->setPosition(rand()%m_window->getSize().x,0.f);
+    }
 
     if(coin2.transform->getY()>m_window->getSize().y)
         coin2.transform->setPosition(rand()%m_window->getSize().x,0.f);
@@ -57,6 +59,7 @@ void MainGame::update(float deltaTime) {
     {
         coin.transform->setPosition(rand()%m_window->getSize().x,0.f);
         player.cash+=coin.getValue();
+        player.gun->restockAmmo(10);
     }
     if(player.transform->getY()<0.f || player.transform->getY()>m_window->getSize().y ||
     player.transform->getX()<0.f ||player.transform->getX()>m_window->getSize().x)
