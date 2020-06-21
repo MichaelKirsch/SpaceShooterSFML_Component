@@ -10,6 +10,7 @@
 #include "Entities/InvisibleToken.h"
 #include "Entities/SpaceBackground.h"
 #include "Entities/Coins.h"
+#include "Entities/Planet.h"
 
 
 class MainGame : public State {
@@ -33,6 +34,7 @@ private:
     std::array<HealthPowerUp,1> powerups;
     Coins coin,coin2,coin3;
     SpaceBackground newBackground;
+    Planet newPlanet;
     InvisibleToken invis;
     int score=0;
     const float max_speed_var = 400.f;

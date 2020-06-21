@@ -2,6 +2,7 @@
 
 MainGame::MainGame(Statemachine* st,sf::RenderWindow &window) : State(st) {
     newBackground.start(window,"data/space-1.png");
+    newPlanet.start(window);
     font.loadFromFile("data/Fonts/JetBrainsMono-Bold.ttf");
     scoreText.setFont(font);
     trailtext.setFont(font);
@@ -37,6 +38,7 @@ MainGame::~MainGame() {
 
 
 void MainGame::update(float deltaTime) {
+    newPlanet.update(deltaTime);
     player.update(deltaTime);
     player.lateUpdate(deltaTime);
     coin.update(deltaTime);
@@ -119,7 +121,7 @@ void MainGame::draw(sf::RenderWindow &window) {
     window.clear();
 
     newBackground.draw(window);
-
+    newPlanet.draw(window);
     player.draw(window);
 
     for(auto& e:allEnemies)
