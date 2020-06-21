@@ -101,10 +101,10 @@ void MainGame::update(float deltaTime) {
     }
     player.aura->active = player.invmode->isInvisible();
     player.afterburner->active =  player.invmode->isInvisible();
-
+    player.smoke->active = player.health->getHealthPercent()<10.f;
 
     scoreText.setString("Score:"+std::to_string(score)+ " Cash:"+std::to_string(player.cash));
-    trailtext.setString("Health: "+ std::to_string(player.health->getHealthPercent())+ "%");
+    player.health_text->setText("Health: "+ std::to_string(player.health->getHealthPercent())+ "%");
 
     if(!player.health->isAlife())
     {

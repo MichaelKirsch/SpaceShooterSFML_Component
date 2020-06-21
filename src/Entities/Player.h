@@ -11,7 +11,8 @@
 #include "InvisibiltyMode.h"
 #include "EnergyCore.h"
 #include "Gun.h"
-
+#include "Animation.h"
+#include "Text.h"
 class Player : public Entity{
 public:
     Player(){
@@ -27,6 +28,9 @@ public:
         health = AddComponent<Health>();
         invmode = AddComponent<InvisibiltyMode>();
         gun = AddComponent<Gun>();
+        smoke = AddComponent<SimpleSprite>();
+        smoke_animation = AddComponent<Animation>();
+        health_text =AddComponent<Text>();
     };
 
     void start(sf::RenderWindow& window);
@@ -44,6 +48,9 @@ public:
     std::shared_ptr<Aura> aura;
     std::shared_ptr<InvisibiltyMode> invmode;
     std::shared_ptr<Gun> gun;
+    std::shared_ptr<SimpleSprite> smoke;
+    std::shared_ptr<Animation> smoke_animation;
+    std::shared_ptr<Text> health_text;
     int cash=0;
 };
 

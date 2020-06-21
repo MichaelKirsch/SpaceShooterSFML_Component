@@ -26,4 +26,9 @@ void Player::start(sf::RenderWindow &window) {
     invmode->start(5.f);
     invmode->trigger();
     gun->loadGun("data/Scripts/shotgun.gun");
+    smoke->load("data/PNG/Black Smoke/blackSmoke00.png");
+    smoke->setSize({sprite->getSize().x,sprite->getSize().y});
+    smoke_animation->start(smoke);
+    smoke_animation->configureTextureAtlas("data/Coins/smoke_atlas.png",{5,5},0.1f,0);
+    health_text->start(sprite->getSize().y*0.2f,"Hello","data/Fonts/JetBrainsMono-Bold.ttf",sf::Color::Red);
 }
