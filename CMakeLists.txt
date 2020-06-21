@@ -20,4 +20,4 @@ add_executable(${PROJECT_NAME} ${SOURCES})
 find_package(SFML 2.5.1 COMPONENTS system window graphics network audio REQUIRED)
 find_package(OpenGL REQUIRED)
 
-target_link_libraries(${PROJECT_NAME} sfml-audio sfml-graphics sfml-window sfml-system ${OPENGL_LIBRARIES} )
+target_link_libraries(${PROJECT_NAME} sfml-audio sfml-graphics sfml-window sfml-system sfml-network ${OPENGL_LIBRARIES} )
