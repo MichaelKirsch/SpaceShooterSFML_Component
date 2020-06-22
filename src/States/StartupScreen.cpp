@@ -41,7 +41,9 @@ void StartupScreen::draw(sf::RenderWindow &window) {
 void StartupScreen::inputs() {
     if(sf::Mouse::isButtonPressed(sf::Mouse::Left)&&name!="")
     {
-        stm->setNextState(std::make_shared<MainGame>(stm,*m_window));
+        auto z = std::make_shared<MainGame>(stm,*m_window);
+        z->name = name;
+        stm->setNextState(z);
     }
 }
 

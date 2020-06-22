@@ -24,6 +24,9 @@ public:
     void inputs() override;
 
     ~MainGame();
+
+    std::string name ="";
+
 private:
     sf::Font font;
     sf::Text scoreText, trailtext;

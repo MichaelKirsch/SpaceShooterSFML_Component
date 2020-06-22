@@ -122,6 +122,7 @@ void MainGame::update(float deltaTime) {
     {
         auto s = std::make_shared<TestState>(stm,*m_window);
         s->score = score;
+        s->name = name;
         stm->setNextState(s);
     }
 

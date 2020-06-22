@@ -5,21 +5,31 @@
 #include "TestState.h"
 
 void TestState::update(float deltaTime) {
-    text.setString("Endscore:"+std::to_string(score));
-    if(!done)
-    {
-        done =true;
-        connected=(l_socket.connect(IPADDRESS, PORT) == sf::Socket::Done);
-        if(connected)
-        {
-            sf::Packet packetSend;
-            std::string to_send;
-            to_send+="Score:"+std::to_string(score);
-            packetSend<<to_send;
-            l_socket.send(packetSend);
-        }
-    }
-
+    text.setString(name+" Endscore:"+std::to_string(score));
+    //if(!done)
+    //{
+    //    done =true;
+    //    connected=(l_socket.connect(IPADDRESS, PORT) == sf::Socket::Done);
+    //    if(connected)
+    //    {
+    //        sf::Packet packetSend;
+    //        std::string to_send;
+    //        to_send+="Name:"+name+"Score:"+std::to_string(score);
+    //        packetSend<<to_send;
+    //        l_socket.send(packetSend);
+//
+    //    }
+    //}
+    //sf::Packet packet;
+    //if(l_socket.receive(packet)==sf::Socket::Done)
+    //{
+    //    std::string s;
+    //    if (packet  >> s)
+    //    {
+    //        std::cout << s;
+    //    }
+    //}
+    std::cout << "Hello" << std::endl;
 }
 
 void TestState::draw(sf::RenderWindow &window) {
@@ -39,10 +49,6 @@ void TestState::inputs() {
 
     if(sf::Mouse::isButtonPressed(sf::Mouse::Left))
         stm->setNextState(std::make_shared<MainGame>(stm,*m_window));
-
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
-        stm->setNextState(stm->oldstate);
-
 }
 
 TestState::TestState(Statemachine *st, sf::RenderWindow &window) : State(st){
