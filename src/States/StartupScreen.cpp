@@ -33,13 +33,16 @@ void StartupScreen::draw(sf::RenderWindow &window) {
             window.close();
         if(e.type==sf::Event::TextEntered)
         {
-            name+=static_cast<char>(e.text.unicode);
+            if(e.text.unicode==0x08)
+                name.pop_back();
+            else
+                name+=static_cast<char>(e.text.unicode);
         }
 
 }
 
 void StartupScreen::inputs() {
-    if(sf::Mouse::isButtonPressed(sf::Mouse::Left)&&name!="")
+    if((sf::Mouse::isButtonPressed(sf::Mouse::Left)||sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))&&name!="")
     {
         auto z = std::make_shared<MainGame>(stm,*m_window);
         z->name = name;
