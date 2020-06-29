@@ -22,7 +22,7 @@ MainGame::MainGame(Statemachine* st,sf::RenderWindow &window) : State(st) {
     invis.transform->setY(0.f);
     for(auto& e:allEnemies)
     {
-        e.start();
+        e.start(window);
         e.transform->setX(rand()%window.getSize().x);
     }
     for(auto& f:powerups)

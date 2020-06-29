@@ -6,11 +6,12 @@
 
 StartupScreen::StartupScreen(Statemachine *st, sf::RenderWindow &sf) : State(st){
     m_window = &sf;
+    //m_window->create(sf::VideoMode::getDesktopMode(),"sda0");
     welcomwtext.text->start(float(m_window->getSize().y*0.06),"Welcome to SpaceRace","data/Fonts/JetBrainsMono-Bold.ttf",sf::Color::Green);
     welcomwtext.transform->setPosition(float(m_window->getSize().x*0.15),0.f);
     buttontest.start(*m_window,{float(m_window->getSize().x*0.5),float(m_window->getSize().y*0.2)},{m_window->getSize().x*0.2f,m_window->getSize().x*0.1f},"data/Fonts/JetBrainsMono-Bold.ttf","data/modif/chest-2.png","Start");
     namefield.start(*m_window,{float(m_window->getSize().x*0.3),float(m_window->getSize().y*0.2)},{m_window->getSize().x*0.2f,m_window->getSize().x*0.1f},"data/Fonts/JetBrainsMono-Bold.ttf","data/PNG/UI/buttonRed.png","Start");
-    //m_window->create(sf::VideoMode::getDesktopMode(),"sda0");
+
     background.start(sf,"data/space-2.png");
     namefield.setTextColor(sf::Color::Blue);
     sprite.body->load("data/space-2.png");

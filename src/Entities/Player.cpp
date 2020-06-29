@@ -5,7 +5,7 @@
 #include "Player.h"
 
 void Player::start(sf::RenderWindow &window) {
-    sprite->setSize({window.getSize().x*0.1f,window.getSize().y*0.1f});
+    sprite->setSize({window.getSize().x*0.1f,window.getSize().x*0.1f});
     sprite->load("data/Spaceship_tut.png");
     health->start(1000);
     effect->start(1000,{250, 130, 0},{250, 25, 0},3.f,2.f);
@@ -25,7 +25,7 @@ void Player::start(sf::RenderWindow &window) {
     aura->start();
     invmode->start(5.f);
     invmode->trigger();
-    gun->loadGun("data/Scripts/shotgun.gun",window);
+    gun->loadGun("data/Scripts/shotgun.json",window);
     gun->offset = {sprite->getSize().x/2.f,0.f};
     smoke->load("data/PNG/Black Smoke/blackSmoke00.png");
     smoke->setSize({sprite->getSize().x,sprite->getSize().y});
