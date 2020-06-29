@@ -17,7 +17,7 @@ public:
     std::shared_ptr<State> oldstate;
 private:
     int framerate = 60;
-    int tickrate = 30;
+    int tickrate = 60;
 
     std::shared_ptr<State> playedState;
     std::shared_ptr<State> nextState;

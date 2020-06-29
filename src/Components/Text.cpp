@@ -37,4 +37,6 @@ void Text::setTextsize(float new_textsize) {
 
 void Text::setColor(sf::Color new_color) {
     text.setFillColor(new_color);
+    fillcolor = new_color;
+
 }

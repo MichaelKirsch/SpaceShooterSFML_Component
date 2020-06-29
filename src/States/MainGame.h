@@ -11,6 +11,7 @@
 #include "Entities/SpaceBackground.h"
 #include "Entities/Coins.h"
 #include "Entities/Planet.h"
+#include "Entities/Button.h"
 
 
 class MainGame : public State {
@@ -28,6 +29,7 @@ public:
     std::string name ="";
 
 private:
+
     sf::Font font;
     sf::Text scoreText, trailtext;
     sf::RenderWindow* m_window;

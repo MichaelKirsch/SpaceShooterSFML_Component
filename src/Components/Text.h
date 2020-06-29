@@ -18,9 +18,20 @@ public:
 
     sf::Color& getColor(){return fillcolor;};
 
+    sf::FloatRect getGlobalBounds()
+    {
+        return text.getGlobalBounds();
+    }
+
     void setColor(sf::Color new_color);
 
     void setTextsize(float new_textsize);
+
+    unsigned getTextsize()
+    {
+        return text.getCharacterSize();
+    }
+
 private:
     sf::Text text;
     sf::Font font;

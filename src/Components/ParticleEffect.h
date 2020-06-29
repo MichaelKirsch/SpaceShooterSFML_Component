@@ -17,7 +17,7 @@ struct Particle
         time_alife+=elapsed;
         if(lifetime<time_alife)
             alife = false;
-        position+=direction*10.f+gravity*10.f;
+        position+=(direction+gravity)*elapsed*250.f;
         body.setPosition(position);
     }
 };

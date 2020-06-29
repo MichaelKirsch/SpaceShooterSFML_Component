@@ -6,26 +6,44 @@
 
 StartupScreen::StartupScreen(Statemachine *st, sf::RenderWindow &sf) : State(st){
     m_window = &sf;
-    font.loadFromFile("data/Fonts/JetBrainsMono-Bold.ttf");
-    text.setFont(font);
-    text.setCharacterSize(sf.getSize().y*0.05f);
-    text.setFillColor(sf::Color::Red);
-    text.setString("Welcome to SpaceRace\nPlease Enter your Name\nand then press Left Mouse:\n");
-    nametext.setFont(font);
-    nametext.setCharacterSize(sf.getSize().y*0.05f);
-    nametext.setFillColor(sf::Color::Yellow);
-    nametext.setPosition(0.f,m_window->getSize().y/2.f);
+    welcomwtext.text->start(float(m_window->getSize().y*0.06),"Welcome to SpaceRace","data/Fonts/JetBrainsMono-Bold.ttf",sf::Color::Green);
+    welcomwtext.transform->setPosition(float(m_window->getSize().x*0.15),0.f);
+    buttontest.start(*m_window,{float(m_window->getSize().x*0.5),float(m_window->getSize().y*0.2)},{m_window->getSize().x*0.2f,m_window->getSize().x*0.1f},"data/Fonts/JetBrainsMono-Bold.ttf","data/modif/chest-2.png","Start");
+    namefield.start(*m_window,{float(m_window->getSize().x*0.3),float(m_window->getSize().y*0.2)},{m_window->getSize().x*0.2f,m_window->getSize().x*0.1f},"data/Fonts/JetBrainsMono-Bold.ttf","data/PNG/UI/buttonRed.png","Start");
     //m_window->create(sf::VideoMode::getDesktopMode(),"sda0");
-}
+    background.start(sf,"data/space-2.png");
+    namefield.setTextColor(sf::Color::Blue);
+    sprite.body->load("data/space-2.png");
+    sprite.body->setSize({float(m_window->getSize().x*0.3),float(m_window->getSize().y*0.3)});
+    sprite.transform->setPosition({float(m_window->getSize().x*0.35),float(m_window->getSize().y*0.35)});
+    sprite.animation->start(sprite.body);
+    sprite.animation->configureTextureAtlas("data/start.png",{12,1},0.2f);
+    }
 
 void StartupScreen::update(float deltaTime) {
-    nametext.setString(name);
+    if(name.empty())
+        namefield.setText("Your Name");
+    else
+        namefield.setText(name);
+    buttontest.update(deltaTime);
+    namefield.update(deltaTime);
+    sprite.update(deltaTime);
+    welcomwtext.update(deltaTime);
+    if(buttontest.mouse->mouseOver&&name.empty())
+        buttontest.setTextColor(sf::Color::Red);
+    if(buttontest.mouse->mouseOver&&!name.empty())
+        buttontest.setTextColor(sf::Color::Green);
+    if (!buttontest.mouse->mouseOver)
+        buttontest.setTextColor(sf::Color::White);
 }
 
 void StartupScreen::draw(sf::RenderWindow &window) {
     window.clear();
-    window.draw(text);
-    window.draw(nametext);
+    background.draw(window);
+    welcomwtext.draw(window);
+    buttontest.draw(window);
+    namefield.draw(window);
+    sprite.draw(window);
     window.display();
     sf::Event e;
     while (window.pollEvent(e))
@@ -33,7 +51,7 @@ void StartupScreen::draw(sf::RenderWindow &window) {
             window.close();
         if(e.type==sf::Event::TextEntered)
         {
-            if(e.text.unicode==0x08)
+            if(e.text.unicode==0x08&&!name.empty())
                 name.pop_back();
             else
                 name+=static_cast<char>(e.text.unicode);
@@ -42,7 +60,7 @@ void StartupScreen::draw(sf::RenderWindow &window) {
 }
 
 void StartupScreen::inputs() {
-    if((sf::Mouse::isButtonPressed(sf::Mouse::Left)||sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))&&name!="")
+    if(buttontest.mouse->clickedLeft&&name!="")
     {
         auto z = std::make_shared<MainGame>(stm,*m_window);
         z->name = name;

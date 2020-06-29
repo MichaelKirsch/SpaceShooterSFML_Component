@@ -18,13 +18,12 @@ void Statemachine::run() {
         elapsed = timer.restart().asSeconds();
         frametimer += elapsed;
         ticktimer +=elapsed;
-        if(frametimer>1.f/framerate)
+        if(frametimer>=1.f/framerate)
         {
             playedState->draw(window);
             frametimer =0.f;
-            std::this_thread::sleep_for(std::chrono::milliseconds((1000/framerate)));
         }
-        if (ticktimer>1.f/tickrate)
+        if (ticktimer>=1.f/tickrate)
         {
 
             playedState->update(ticktimer);
@@ -33,6 +32,12 @@ void Statemachine::run() {
         }
         if(nextState !=playedState)
             playedState = nextState;
+
+        //lets find out which of those two things is needed next
+
+        float neededTime_frame = (1.f/framerate)-frametimer;
+        float neededTime_tick = (1.f/tickrate)-ticktimer;
+        std::this_thread::sleep_for(std::chrono::milliseconds(int(((neededTime_frame<neededTime_tick)?neededTime_frame:neededTime_tick)*990)));
     }
 }
 
