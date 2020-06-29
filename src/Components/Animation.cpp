@@ -39,3 +39,4 @@ void Animation::configureTextureAtlas(std::string texture_atlas, sf::Vector2u i_
     textPtrSprite->loadFromFile(texture_atlas);
     picture_size = {float(textPtrSprite->getSize().x/grid.x),float(textPtrSprite->getSize().y/grid.y)};
 }
+

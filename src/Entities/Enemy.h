@@ -22,9 +22,10 @@ public:
         body->load("data/a10000.png");
         mover->start({0.f,1.f},250.f);
         hitbox->start(body->getSize());
-        particles->start(10,{255, 15, 15},{255, 36, 242},0.07f,0.03f);
+        particles->start(10,sf::Color::White,sf::Color::White,0.07f,0.03f);
         particles->gravity_direction={0.f,-1.f};
         particles->offset = body->getSize()/2.f;
+        particles->setParticleTexture("data/invisible_icon.png");
         animation->start(body);
         animation->configureTextureAtlas("data/Coins/asteroid_grey_atlas.png",{3,5},0.1f,0);
         health->start(150);

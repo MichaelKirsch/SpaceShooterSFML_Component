@@ -43,11 +43,12 @@ public:
     sf::Vector2f gravity_direction;
     sf::Vector2f offset;
     void setParticleSize(sf::Vector2f size);
-
+    void setParticleTexture(std::string texturepath);
+    sf::Texture& getTexture(){return particleTexture;};
 private:
     sf::Vector2f partice_size;
     void respawm(Particle& p);
-
+    sf::Texture particleTexture;
     std::vector<Particle> m_particles;
 
 };

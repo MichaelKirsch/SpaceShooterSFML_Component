@@ -65,3 +65,9 @@ void ParticleEffect::respawm(Particle &p) {
 void ParticleEffect::setParticleSize(sf::Vector2f size) {
     partice_size = size;
 }
+
+void ParticleEffect::setParticleTexture(std::string texturepath) {
+    particleTexture.loadFromFile(texturepath);
+    for(auto& t:m_particles)
+        t.body.setTexture(&particleTexture);
+}
