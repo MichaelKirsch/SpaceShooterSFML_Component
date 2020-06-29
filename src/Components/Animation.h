@@ -10,6 +10,8 @@ public:
 
     void start(std::shared_ptr<SimpleSprite> sprite_to_act_on);
 
+    void start(sf::Texture& texture, sf::RectangleShape& shape);
+
     void configureTextureAtlas(std::string texture_atlas, sf::Vector2u grid,float i_jumpTime,int i_cutoff_end =0);
 
     void update(float deltaTime) override;
@@ -19,6 +21,7 @@ public:
 private:
     std::shared_ptr<SimpleSprite> sprite;
     sf::Texture* textPtrSprite;
+    sf::RectangleShape* m_shape;
     sf::Vector2f single_texture_size;
     float jump_time=0.f;
     float timer=0.f;

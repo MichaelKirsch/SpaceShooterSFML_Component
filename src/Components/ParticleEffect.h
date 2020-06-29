@@ -1,6 +1,7 @@
 #pragma once
 #include "Component.h"
 #include "Entity.h"
+#include "Animation.h"
 
 struct Particle
 {
@@ -50,7 +51,6 @@ private:
     void respawm(Particle& p);
     sf::Texture particleTexture;
     std::vector<Particle> m_particles;
-
 };
 
 

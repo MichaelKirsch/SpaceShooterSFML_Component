@@ -5,10 +5,10 @@
 #include "ParticleEffect.h"
 
 ParticleEffect::ParticleEffect(Entity *owner) : Component(owner) {
-
 }
 
 void ParticleEffect::update(float deltaTime) {
+
     if(active)
         for(auto& p:m_particles)
         {
