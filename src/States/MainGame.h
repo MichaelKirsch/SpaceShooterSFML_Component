@@ -13,7 +13,7 @@
 #include "Entities/Planet.h"
 #include "Entities/Button.h"
 
-
+//
 class MainGame : public State {
 public:
     MainGame(Statemachine* st,sf::RenderWindow& window);
