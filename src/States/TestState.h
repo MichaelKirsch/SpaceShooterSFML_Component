@@ -14,6 +14,7 @@ public:
 
     void draw(sf::RenderWindow &window) override;
     int score=0;
+    int dif=0;
     std::string name="";
     void inputs() override;
     ~TestState();

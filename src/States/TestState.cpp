@@ -29,7 +29,12 @@ void TestState::draw(sf::RenderWindow &window) {
 
 void TestState::inputs() {
     if(restart.leftClicked_t||sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
-        stm->setNextState(std::make_shared<MainGame>(stm,*m_window));
+    {
+        auto s = std::make_shared<MainGame>(stm,*m_window);
+        s->difficulty = dif;
+        stm->setNextState(s);
+    }
+
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
         m_window->close();
 }

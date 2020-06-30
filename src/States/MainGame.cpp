@@ -1,6 +1,14 @@
 #include "MainGame.h"
 
 MainGame::MainGame(Statemachine* st,sf::RenderWindow &window) : State(st) {
+    switch (difficulty) {
+        case 0:
+            max_speed_var = 200;
+        case 1:
+            max_speed_var = 300;
+        case 2:
+            max_speed_var = 400;
+    }
     window.setMouseCursorVisible(false);
     newBackground.start(window,"data/Background/space-1.png");
     newPlanet.start(window);
@@ -16,12 +24,11 @@ MainGame::MainGame(Statemachine* st,sf::RenderWindow &window) : State(st) {
     m_window = &window;
     player.start(window,"data/Ships/playerShip3_green.png","data/Scripts/shotgun.json","data/Bullets/laserRed12.png","data/Bullets/laserGreen12.png");
     coin.start(Coins::CoinType::BRONZE,window);
-    coin2.start(Coins::CoinType::SILVER,window);
-    coin3.start(Coins::CoinType::GOLD,window);
     shield.start("data/Drops/shield_silver.png",{window.getSize().x*0.07f,window.getSize().x*0.07f},50.f);
     health.start("data/Drops/powerupred_bolt.png",{window.getSize().x*0.07f,window.getSize().x*0.07f},50.f);
     health.transform->setX(rand()%window.getSize().x);
     shield.transform->setX(rand()%window.getSize().x);
+
     for(auto& e:allEnemies)
     {
         e.start(window,"data/AnimationAtlas/asteroid_grey_atlas.png","data/Particles/meteorBrown_tiny2.png");
@@ -40,18 +47,11 @@ void MainGame::update(float deltaTime) {
     player.update(deltaTime);
     player.lateUpdate(deltaTime);
     coin.update(deltaTime);
-    coin2.update(deltaTime);
-    coin3.update(deltaTime);
 
     if(coin.transform->getY()>m_window->getSize().y)
     {
         coin.transform->setPosition(rand()%m_window->getSize().x,0.f);
     }
-
-    if(coin2.transform->getY()>m_window->getSize().y)
-        coin2.transform->setPosition(rand()%m_window->getSize().x,0.f);
-    if(coin3.transform->getY()>m_window->getSize().y)
-        coin3.transform->setPosition(rand()%m_window->getSize().x,0.f);
 
     if(coin.hitbox->AABBCollisionTest(player.hitbox))
     {
@@ -119,6 +119,7 @@ void MainGame::update(float deltaTime) {
         auto s = std::make_shared<TestState>(stm,*m_window);
         s->score = score;
         s->name = name;
+        s->dif = difficulty;
         stm->setNextState(s);
     }
 
@@ -139,8 +140,6 @@ void MainGame::draw(sf::RenderWindow &window) {
     health.draw(window);
     shield.draw(window);
     coin.draw(window);
-    coin2.draw(window);
-    coin3.draw(window);
     window.draw(scoreText);
     window.draw(trailtext);
     window.display();

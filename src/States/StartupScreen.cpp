@@ -20,7 +20,7 @@ StartupScreen::StartupScreen(Statemachine *st, sf::RenderWindow &sf_window) : St
     sprite.animation->start(sprite.body);
     sprite.animation->configureTextureAtlas("data/AnimationAtlas/asteroid_grey_atlas.png",{3,5},0.1f);
     list.start(sf_window,{m_window->getSize().x/2.f-m_window->getSize().x*0.13f,m_window->getSize().y*0.7f},{m_window->getSize().x*0.3f,m_window->getSize().y*0.1f},"data/UI/arrowBlue_left.png","data/UI/arrowBlue_right.png","data/UI/buttonLong_blue.png","data/Fonts/Kenney Rocket.ttf");
-    list.insertValue({"0%","25%","50%","75%","100%"});
+    list.insertValue({"easy","medium","hard"});
     }
 
 void StartupScreen::update(float deltaTime) {
@@ -69,6 +69,7 @@ void StartupScreen::inputs() {
     {
         auto z = std::make_shared<MainGame>(stm,*m_window);
         z->name = name;
+        z->difficulty = list.getCurrentItemNbr();
         stm->setNextState(z);
     }
 }

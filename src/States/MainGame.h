@@ -26,6 +26,8 @@ public:
 
     ~MainGame();
 
+    int difficulty=0;
+
     std::string name ="";
 
 private:
@@ -37,12 +39,12 @@ private:
     std::array<Enemy,6> allEnemies;
     std::vector<std::shared_ptr<Entity>> allEntities;
     PowerUp health,shield;
-    Coins coin,coin2,coin3;
+    Coins coin;
     SpaceBackground newBackground;
     Planet newPlanet;
 
     int score=0;
-    const float max_speed_var = 300.f;
+    float max_speed_var = 300.f;
     const float startSpeed = 200.f;
     float getAddSpeed(int stage,float max_speed_control, float offset);
 };
