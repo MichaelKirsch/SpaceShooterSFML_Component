@@ -6,11 +6,11 @@
 
 void Button::update(float deltaTime) {
     Entity::update(deltaTime);
-    if(text->getTextsize()<body->getSize().y)
+    if(text->getGlobalBounds().height<body->getSize().y)
     {
         float height = text->getGlobalBounds().height;
         float heightbody = body->getSize().y;
-       float offset = ((heightbody-height)/2.f);
+       float offset = heightbody/2.f-height;
        text->offset.y = offset;
     }
     if(text->getGlobalBounds().width<body->getSize().x)
