@@ -18,6 +18,7 @@ public:
     float time_since_button_is_hold_left=0.f;
     float time_since_button_is_hold_right=0.f;
     float time_mouse_is_over=0.f;
+    float time_since_last_click=0.f;
 private:
     std::shared_ptr<SimpleSprite> spritebody;
     sf::RenderWindow* window;

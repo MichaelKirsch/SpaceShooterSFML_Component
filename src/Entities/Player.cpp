@@ -33,7 +33,4 @@ void Player::start(sf::RenderWindow &window) {
     smoke_animation->start(smoke);
     smoke_animation->configureTextureAtlas("data/Coins/smoke_atlas.png",{5,5},0.1f,0);
     health_text->start(sprite->getSize().y*0.2f,"Hello","data/Fonts/JetBrainsMono-Bold.ttf",sf::Color::Red);
-
-
-
 }

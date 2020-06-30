@@ -8,11 +8,32 @@ void Button::update(float deltaTime) {
     Entity::update(deltaTime);
     if(text->getTextsize()<body->getSize().y)
     {
-        int height = text->getTextsize();
-        int heightbody = body->getSize().y;
+        float height = text->getGlobalBounds().height;
+        float heightbody = body->getSize().y;
        float offset = ((heightbody-height)/2.f);
-       text->offset = {0.f,offset};
+       text->offset.y = offset;
     }
+    if(text->getGlobalBounds().width<body->getSize().x)
+    {
+        text->offset.x = 0.5f*(body->getSize().x-text->getGlobalBounds().width);
+    }
+
+    timer+=deltaTime;
+    if(mouse->clickedLeft&&timer>debouncetime)
+    {
+        leftClicked_t = true;
+        timer=0.f;
+    } else
+        leftClicked_t = false;
+
+    if(mouse->clickedRight&&timer>debouncetime)
+    {
+        rightClicked_t = true;
+        timer=0.f;
+    } else
+        rightClicked_t = false;
+
+    hover = mouse->mouseOver;
 }
 
 void Button::start(sf::RenderWindow& window,sf::Vector2f pos, sf::Vector2f size, std::string font_path, std::string background, std::string buttonText) {

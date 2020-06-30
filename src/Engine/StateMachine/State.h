@@ -1,6 +1,6 @@
 #pragma once
 #include "SFML/Graphics.hpp"
-
+#include "Entity.h"
 class Statemachine;
 
 class State {
@@ -10,6 +10,8 @@ public:
     virtual void draw(sf::RenderWindow& window){};
     virtual void inputs(){};
     Statemachine* stm;
+private:
+    std::vector<std::shared_ptr<Entity>> dynamicEntities;
 };
 
 

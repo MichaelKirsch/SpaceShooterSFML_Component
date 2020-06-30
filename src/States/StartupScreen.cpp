@@ -4,21 +4,23 @@
 
 #include "StartupScreen.h"
 
-StartupScreen::StartupScreen(Statemachine *st, sf::RenderWindow &sf) : State(st){
-    m_window = &sf;
+StartupScreen::StartupScreen(Statemachine *st, sf::RenderWindow &sf_window) : State(st){
+    m_window = &sf_window;
     //m_window->create(sf::VideoMode::getDesktopMode(),"sda0");
     welcomwtext.text->start(float(m_window->getSize().y*0.06),"Welcome to SpaceRace","data/Fonts/JetBrainsMono-Bold.ttf",sf::Color::Green);
     welcomwtext.transform->setPosition(float(m_window->getSize().x*0.15),0.f);
     buttontest.start(*m_window,{float(m_window->getSize().x*0.5),float(m_window->getSize().y*0.2)},{m_window->getSize().x*0.2f,m_window->getSize().x*0.1f},"data/Fonts/JetBrainsMono-Bold.ttf","data/modif/chest-2.png","Start");
     namefield.start(*m_window,{float(m_window->getSize().x*0.3),float(m_window->getSize().y*0.2)},{m_window->getSize().x*0.2f,m_window->getSize().x*0.1f},"data/Fonts/JetBrainsMono-Bold.ttf","data/PNG/UI/buttonRed.png","Start");
 
-    background.start(sf,"data/space-2.png");
+    background.start(sf_window,"data/space-2.png");
     namefield.setTextColor(sf::Color::Blue);
     sprite.body->load("data/space-2.png");
     sprite.body->setSize({float(m_window->getSize().x*0.3),float(m_window->getSize().y*0.3)});
     sprite.transform->setPosition({float(m_window->getSize().x*0.35),float(m_window->getSize().y*0.35)});
     sprite.animation->start(sprite.body);
     sprite.animation->configureTextureAtlas("data/start.png",{12,1},0.2f);
+    list.start(sf_window,{0.f,0.f},{300.f,100.f},"data/modif/armor-0.png","data/modif/acidspray.png","data/modif/basher.png","data/Fonts/JetBrainsMono-Bold.ttf");
+    list.insertValue({"0%","25%","50%","75%","100%"});
     }
 
 void StartupScreen::update(float deltaTime) {
@@ -30,6 +32,7 @@ void StartupScreen::update(float deltaTime) {
     namefield.update(deltaTime);
     sprite.update(deltaTime);
     welcomwtext.update(deltaTime);
+    list.update(deltaTime);
     if(buttontest.mouse->mouseOver&&name.empty())
         buttontest.setTextColor(sf::Color::Red);
     if(buttontest.mouse->mouseOver&&!name.empty())
@@ -45,6 +48,7 @@ void StartupScreen::draw(sf::RenderWindow &window) {
     buttontest.draw(window);
     namefield.draw(window);
     sprite.draw(window);
+    list.draw(window);
     window.display();
     sf::Event e;
     while (window.pollEvent(e))

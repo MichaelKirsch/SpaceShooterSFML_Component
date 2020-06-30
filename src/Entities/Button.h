@@ -21,12 +21,22 @@ public:
         text->setColor(newCol);
     }
 
+    bool leftClicked_t=false;
+    bool rightClicked_t= false;
+    bool hover= false;
+
+
+    void setDebounceTime(float newTime)
+    {
+        debouncetime = newTime;
+    }
     void setTextToMax();
 
     void setText(std::string text);
 private:
     std::shared_ptr<SimpleSprite> body;
-
+    float timer=0.f;
+    float debouncetime=0.2f;
     std::shared_ptr<Text> text;
 };
 

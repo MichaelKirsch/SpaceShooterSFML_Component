@@ -11,6 +11,7 @@ MouseOver::MouseOver(Entity *owner) : Component(owner) {
 void MouseOver::update(float deltaTime) {
     auto body = spritebody->getRect();
     auto mouse_pos = sf::Mouse::getPosition(*window);
+    time_since_last_click +=deltaTime;
     if(body.getGlobalBounds().contains(mouse_pos.x,mouse_pos.y))
     {
         time_since_last_mouseover = 0.f;
@@ -18,6 +19,7 @@ void MouseOver::update(float deltaTime) {
         mouseOver = true;
         if(sf::Mouse::isButtonPressed(sf::Mouse::Left))
         {
+            time_since_last_click =0.f;
             clickedLeft = true;
             time_since_button_is_hold_left +=deltaTime;
         } else
@@ -27,6 +29,7 @@ void MouseOver::update(float deltaTime) {
         }
         if(sf::Mouse::isButtonPressed(sf::Mouse::Right))
         {
+            time_since_last_click =0.f;
             clickedRight = true;
             time_since_button_is_hold_right +=deltaTime;
         } else

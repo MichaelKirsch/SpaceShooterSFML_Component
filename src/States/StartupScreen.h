@@ -4,6 +4,7 @@
 #include "Entities/SpaceBackground.h"
 #include "Entities/Sprite.h"
 #include "Entities/SimpleText.h"
+#include "ToggleList.h"
 
 class StartupScreen : public State {
 public:
@@ -16,6 +17,7 @@ public:
     void inputs() override;
 
 private:
+    ToggleList list;
     SimpleText welcomwtext;
     Button buttontest,namefield;
     Sprite sprite;
