@@ -37,7 +37,7 @@ void TestState::inputs() {
 TestState::TestState(Statemachine *st, sf::RenderWindow &window) : State(st){
     m_window = &window;
     text.text->start(window.getSize().y*0.06f,name+" Score:"+std::to_string(score),"data/Fonts/Kenney Space.ttf",sf::Color::Green);
-    restart.start(window,{window.getSize().x*0.35f,window.getSize().y*0.35f},{window.getSize().x*0.3f,window.getSize().y*0.3f},
+    restart.start(window,{window.getSize().x*0.35f,window.getSize().y*0.35f},{window.getSize().x*0.3f,window.getSize().y*0.15f},
             "data/Fonts/Kenney Rocket.ttf","data/UI/buttonLong_blue.png","Try Again");
     m_window->setMouseCursorVisible(true);
     text.transform->setY(m_window->getSize().y*0.2f);
