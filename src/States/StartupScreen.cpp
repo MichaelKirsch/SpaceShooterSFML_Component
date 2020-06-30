@@ -18,7 +18,7 @@ StartupScreen::StartupScreen(Statemachine *st, sf::RenderWindow &sf_window) : St
     sprite.body->setSize({float(m_window->getSize().x*0.3),float(m_window->getSize().y*0.3)});
     sprite.transform->setPosition({float(m_window->getSize().x*0.35),float(m_window->getSize().y*0.35)});
     sprite.animation->start(sprite.body);
-    sprite.animation->configureTextureAtlas("data/AnimationAtlas/ships.png",{5,1},0.2f);
+    sprite.animation->configureTextureAtlas("data/AnimationAtlas/asteroid_grey_atlas.png",{3,5},0.1f);
     list.start(sf_window,{m_window->getSize().x/2.f-m_window->getSize().x*0.13f,m_window->getSize().y*0.7f},{m_window->getSize().x*0.3f,m_window->getSize().y*0.1f},"data/UI/arrowBlue_left.png","data/UI/arrowBlue_right.png","data/UI/buttonLong_blue.png","data/Fonts/Kenney Rocket.ttf");
     list.insertValue({"0%","25%","50%","75%","100%"});
     }

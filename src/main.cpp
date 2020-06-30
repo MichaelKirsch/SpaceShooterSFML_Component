@@ -1,8 +1,5 @@
 
 #include <iostream>
-#include "Entity.h"
-#include <vector>
-#include "SFML/Audio.hpp"
 #include "StateMachine/Statemachine.h"
 
 int main() {
