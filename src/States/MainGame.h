@@ -3,15 +3,15 @@
 #include "Entity.h"
 #include "Entities/Player.h"
 #include "Entities/Enemy.h"
-#include "Entities/HealthPowerUp.h"
+#include "Entities/PowerUp.h"
 #include "TestState.h"
 #include "StateMachine/Statemachine.h"
 #include <cmath>
-#include "Entities/InvisibleToken.h"
 #include "Entities/SpaceBackground.h"
 #include "Entities/Coins.h"
 #include "Entities/Planet.h"
 #include "Entities/Button.h"
+#include "StartupScreen.h"
 
 //
 class MainGame : public State {
@@ -36,11 +36,11 @@ private:
     Player player;
     std::array<Enemy,6> allEnemies;
     std::vector<std::shared_ptr<Entity>> allEntities;
-    std::array<HealthPowerUp,1> powerups;
+    PowerUp health,shield;
     Coins coin,coin2,coin3;
     SpaceBackground newBackground;
     Planet newPlanet;
-    InvisibleToken invis;
+
     int score=0;
     const float max_speed_var = 300.f;
     const float startSpeed = 200.f;

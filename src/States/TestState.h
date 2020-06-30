@@ -2,7 +2,8 @@
 #include "Engine/StateMachine/State.h"
 #include "StateMachine/Statemachine.h"
 #include "MainGame.h"
-#include <SFML/Network.hpp>
+#include "SimpleText.h"
+#include "Button.h"
 
 class
 TestState : public State {
@@ -17,16 +18,9 @@ public:
     void inputs() override;
     ~TestState();
 private:
-    sf::Font font;
-    sf::Text text;
-    sf::RectangleShape rect;
+    Button restart;
+    SimpleText text;
     sf::RenderWindow* m_window;
-    sf::TcpSocket l_socket;
-    const unsigned short PORT = 5000;
-    const std::string IPADDRESS="2.56.99.66";//change to suit your needs
-    bool connected = false;
-    bool done = false;
-    sf::Packet packet;
 };
 
 

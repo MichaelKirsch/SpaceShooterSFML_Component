@@ -5,37 +5,23 @@
 #include "TestState.h"
 
 void TestState::update(float deltaTime) {
-    text.setString(name+" Endscore:"+std::to_string(score));
-    //if(!done)
-    //{
-    //    done =true;
-    //    connected=(l_socket.connect(IPADDRESS, PORT) == sf::Socket::Done);
-    //    if(connected)
-    //    {
-    //        sf::Packet packetSend;
-    //        std::string to_send;
-    //        to_send+="Name:"+name+"Score:"+std::to_string(score);
-    //        packetSend<<to_send;
-    //        l_socket.send(packetSend);
-//
-    //    }
-    //}
-    //sf::Packet packet;
-    //if(l_socket.receive(packet)==sf::Socket::Done)
-    //{
-    //    std::string s;
-    //    if (packet  >> s)
-    //    {
-    //        std::cout << s;
-    //    }
-    //}
-    std::cout << "Hello" << std::endl;
+    restart.update(deltaTime);
+    text.update(deltaTime);
+    text.text->setText(name+" Score:"+std::to_string(score));
+    if(restart.hover)
+        restart.setTextColor(sf::Color::Green);
+    else
+        restart.setTextColor(sf::Color::White);
+
+    text.transform->setX(m_window->getSize().x/2.f-text.text->getGlobalBounds().width/2.f);
+
+
 }
 
 void TestState::draw(sf::RenderWindow &window) {
     window.clear();
-    window.draw(rect);
-    window.draw(text);
+    restart.draw(window);
+    text.draw(window);
     window.display();
     sf::Event e;
     while (window.pollEvent(e))
@@ -44,22 +30,19 @@ void TestState::draw(sf::RenderWindow &window) {
 }
 
 void TestState::inputs() {
-    if(sf::Mouse::isButtonPressed(sf::Mouse::Right))
-        m_window->close();
-
-    if(sf::Mouse::isButtonPressed(sf::Mouse::Left))
+    if(restart.leftClicked_t||sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
         stm->setNextState(std::make_shared<MainGame>(stm,*m_window));
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+        m_window->close();
 }
 
 TestState::TestState(Statemachine *st, sf::RenderWindow &window) : State(st){
     m_window = &window;
-    rect.setSize({m_window->getSize().x/2.f,m_window->getSize().y/2.f});
-    rect.setFillColor(sf::Color::Green);
-    font.loadFromFile("data/Fonts/JetBrainsMono-Bold.ttf");
-    text.setFont(font);
-    text.setCharacterSize(window.getSize().y*0.05f);
-    text.setFillColor(sf::Color::Red);
-
+    text.text->start(window.getSize().y*0.06f,name+" Score:"+std::to_string(score),"data/Fonts/Kenney Space.ttf",sf::Color::Green);
+    restart.start(window,{window.getSize().x*0.35f,window.getSize().y*0.35f},{window.getSize().x*0.3f,window.getSize().y*0.3f},
+            "data/Fonts/Kenney Rocket.ttf","data/UI/buttonLong_blue.png","Try Again");
+    m_window->setMouseCursorVisible(true);
+    text.transform->setY(m_window->getSize().y*0.2f);
 }
 
 TestState::~TestState() {

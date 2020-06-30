@@ -6,7 +6,7 @@
 
 void Planet::start(sf::RenderWindow &window) {
     m_planet->setSize(float(window.getSize().x * 0.1f));
-    m_planet->load("data/a10000.png");
+    m_planet->load("data/Enemies/ufoBlue.png");
     m_linearmover->start({0.f, 1.f}, 100.f);
 }
 

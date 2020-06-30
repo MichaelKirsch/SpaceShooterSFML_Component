@@ -7,19 +7,19 @@
 StartupScreen::StartupScreen(Statemachine *st, sf::RenderWindow &sf_window) : State(st){
     m_window = &sf_window;
     //m_window->create(sf::VideoMode::getDesktopMode(),"sda0");
-    welcomwtext.text->start(float(m_window->getSize().y*0.06),"Welcome to SpaceRace","data/Fonts/JetBrainsMono-Bold.ttf",sf::Color::Green);
+    welcomwtext.text->start(float(m_window->getSize().y*0.04),"Welcome to SpaceRace","data/Fonts/Kenney Rocket.ttf",sf::Color::Green);
     welcomwtext.transform->setPosition(float(m_window->getSize().x*0.15),0.f);
-    buttontest.start(*m_window,{float(m_window->getSize().x*0.5),float(m_window->getSize().y*0.2)},{m_window->getSize().x*0.2f,m_window->getSize().x*0.1f},"data/Fonts/JetBrainsMono-Bold.ttf","data/modif/chest-2.png","Start");
-    namefield.start(*m_window,{float(m_window->getSize().x*0.3),float(m_window->getSize().y*0.2)},{m_window->getSize().x*0.2f,m_window->getSize().x*0.1f},"data/Fonts/JetBrainsMono-Bold.ttf","data/PNG/UI/buttonRed.png","Start");
+    buttontest.start(*m_window,{float(m_window->getSize().x*0.5),float(m_window->getSize().y*0.2)},{m_window->getSize().x*0.2f,m_window->getSize().x*0.1f},"data/Fonts/Kenney Rocket.ttf","data/UI/buttonLong_blue.png","Start");
+    namefield.start(*m_window,{float(m_window->getSize().x*0.3),float(m_window->getSize().y*0.2)},{m_window->getSize().x*0.2f,m_window->getSize().x*0.1f},"data/Fonts/Kenney Rocket.ttf","data/UI/buttonLong_blue.png","Start");
 
-    background.start(sf_window,"data/space-2.png");
+    background.start(sf_window,"data/Background/space-1.png");
     namefield.setTextColor(sf::Color::Blue);
-    sprite.body->load("data/space-2.png");
+    sprite.body->load("data/Background/space-1.png");
     sprite.body->setSize({float(m_window->getSize().x*0.3),float(m_window->getSize().y*0.3)});
     sprite.transform->setPosition({float(m_window->getSize().x*0.35),float(m_window->getSize().y*0.35)});
     sprite.animation->start(sprite.body);
-    sprite.animation->configureTextureAtlas("data/start.png",{12,1},0.2f);
-    list.start(sf_window,{0.f,0.f},{300.f,100.f},"data/modif/armor-0.png","data/modif/acidspray.png","data/modif/basher.png","data/Fonts/JetBrainsMono-Bold.ttf");
+    sprite.animation->configureTextureAtlas("data/AnimationAtlas/ships.png",{5,1},0.2f);
+    list.start(sf_window,{m_window->getSize().x/2.f-m_window->getSize().x*0.13f,m_window->getSize().y*0.7f},{m_window->getSize().x*0.3f,m_window->getSize().y*0.1f},"data/UI/arrowBlue_left.png","data/UI/arrowBlue_right.png","data/UI/buttonLong_blue.png","data/Fonts/Kenney Rocket.ttf");
     list.insertValue({"0%","25%","50%","75%","100%"});
     }
 

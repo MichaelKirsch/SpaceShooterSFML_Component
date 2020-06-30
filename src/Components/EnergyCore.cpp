@@ -13,7 +13,7 @@ void EnergyCore::start()
     active = true;
     ownerHealth = owner->GetComponent<Health>();
     sizeOfOwner = owner->GetComponent<SimpleSprite>()->getSize();
-    m_texture.loadFromFile("data/Core2.png");
+    m_texture.loadFromFile("data/Enemies/ufoBlue.png");
 
     m_core.setSize({0.25f * sizeOfOwner.x, 0.25f * sizeOfOwner.y});
     m_core.setPosition({sizeOfOwner.x / 2 - m_core.getSize().x / 2, 0.5f * sizeOfOwner.y});

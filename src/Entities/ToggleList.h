@@ -14,9 +14,9 @@ public:
         m_window = &window;
         trueSize.x = size.x;
         trueSize.y = size.y;
-        left.start(window,transform->getPosition(),{trueSize.x*0.25f,trueSize.y},font,buttonleft,"-");
-        right.start(window,{transform->getX()+(0.75f*trueSize.x),transform->getY()},{trueSize.x*0.25f,trueSize.y},font,buttonright,"+");
-        middle.start(window,{transform->getX()+(0.25f*trueSize.x),transform->getY()},{trueSize.x*0.5f,trueSize.y},font,texturemiddle,"Default");
+        left.start(window,transform->getPosition(),{trueSize.x*0.25f,trueSize.y},font,buttonleft,"");
+        right.start(window,{transform->getX()+(0.75f*trueSize.x),transform->getY()},{trueSize.x*0.25f,trueSize.y},font,buttonright,"");
+        middle.start(window,{transform->getX()+(0.25f*trueSize.x),transform->getY()},{trueSize.x*0.5f,trueSize.y},font,texturemiddle,"100%");
         entities.push_back(&left);
         entities.push_back(&right);
         entities.push_back(&middle);
@@ -72,6 +72,17 @@ public:
         for(auto& c:insertc)
             values.emplace_back(c);
     }
+
+    std::string getCurrentValue()
+    {
+        return values[iterator];
+    }
+
+    int getCurrentItemNbr()
+    {
+        return iterator;
+    }
+
 
 private:
     Button left, right,middle;

@@ -17,17 +17,17 @@ public:
         health = AddComponent<Health>();
     };
 
-    void start(sf::RenderWindow& window){
+    void start(sf::RenderWindow& window, std::string animationtexture, std::string particle){
         body->setSize({window.getSize().x*0.1f,window.getSize().y*0.1f});
-        body->load("data/a10000.png");
+        body->load(animationtexture);
         mover->start({0.f,1.f},250.f);
         hitbox->start(body->getSize());
         particles->start(10,sf::Color::White,sf::Color::White,0.07f,0.03f);
         particles->gravity_direction={0.f,-1.f};
         particles->offset = body->getSize()/2.f;
-        particles->setParticleTexture("data/invisible_icon.png");
+        particles->setParticleTexture(particle);
         animation->start(body);
-        animation->configureTextureAtlas("data/Coins/asteroid_grey_atlas.png",{3,5},0.1f,0);
+        animation->configureTextureAtlas(animationtexture,{3,5},0.1f,0);
         health->start(150);
     }
 

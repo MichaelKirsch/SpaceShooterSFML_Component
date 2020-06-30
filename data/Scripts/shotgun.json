@@ -1,13 +1,13 @@
 {
-    "bullet_texture": "data/rocket.png",
-    "spread":0.04,
-    "damage": 20.0,
-    "bulletspeed": 600.0,
-    "firerate": 100,
-    "bulletSizeX": 0.01,
-    "bulletSizeY": 0.01,
-    "burstmode": true,
-    "burst_size": 3,
-    "burst_pause": 0.04,
-    "ammo" : 100
+  "bullet_texture": "data/Bullets/laserBlue01.png",
+  "spread":0.04,
+  "damage": 20.0,
+  "bulletspeed": 600.0,
+  "firerate": 100,
+  "bulletSizeX": 0.01,
+  "bulletSizeY": 0.01,
+  "burstmode": true,
+  "burst_size": 3,
+  "burst_pause": 0.04,
+  "ammo" : 100
 }

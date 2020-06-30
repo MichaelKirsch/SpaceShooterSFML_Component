@@ -33,7 +33,7 @@ public:
         health_text =AddComponent<Text>();
     };
 
-    void start(sf::RenderWindow& window);
+    void start(sf::RenderWindow& window, std::string ship, std::string gun,std::string particle1, std::string particle2);
 
 
     std::shared_ptr<SimpleSprite> sprite;
