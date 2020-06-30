@@ -14,8 +14,6 @@ void TestState::update(float deltaTime) {
         restart.setTextColor(sf::Color::White);
 
     text.transform->setX(m_window->getSize().x/2.f-text.text->getGlobalBounds().width/2.f);
-
-
 }
 
 void TestState::draw(sf::RenderWindow &window) {
