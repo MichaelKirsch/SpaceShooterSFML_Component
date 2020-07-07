@@ -5,12 +5,9 @@ void color_loader::load(std::string path) {
     std::ifstream file(path);
     if(!file.is_open())
         throw std::runtime_error(path+" is not existing or cant be opened");
-
-
-
     std::string s = "";
     std::string delimiter = "-";
-
+    m_colors.clear();
     getline (file,s);
 
     file.close();

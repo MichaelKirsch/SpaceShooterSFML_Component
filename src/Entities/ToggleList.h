@@ -31,6 +31,7 @@ public:
         middle.setColorLoader(loader);
     }
     void update(float deltaTime) override {
+        has_change = false;
         Entity::update(deltaTime);
         left.update(deltaTime);
         right.update(deltaTime);
@@ -42,6 +43,7 @@ public:
         {
             if(left.leftClicked_t)
             {
+                has_change = true;
                 iterator--;
                 if(iterator<0)
                     iterator=0;
@@ -53,6 +55,7 @@ public:
             if(right.leftClicked_t)
             {
                 iterator++;
+                has_change = true;
                 if(iterator>values.size()-1)
                     iterator=values.size()-1;
             }
@@ -84,6 +87,7 @@ public:
         return iterator;
     }
 
+    bool has_change = false;
 
 private:
     Button left, right,middle;

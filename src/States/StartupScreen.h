@@ -19,7 +19,7 @@ public:
 
 private:
     color_loader color_l;
-    ToggleList list;
+    ToggleList list,colorschemes;
     SimpleText welcomwtext;
     Button buttontest,namefield;
     Sprite sprite;
