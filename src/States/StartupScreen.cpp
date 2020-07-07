@@ -22,9 +22,9 @@ StartupScreen::StartupScreen(Statemachine *st, sf::RenderWindow &sf_window) : St
     list.start(sf_window,{m_window->getSize().x/2.f-m_window->getSize().x*0.13f,m_window->getSize().y*0.7f},{m_window->getSize().x*0.3f,m_window->getSize().y*0.1f},"data/UI/arrowBlue_left.png","data/UI/arrowBlue_right.png","data/UI/buttonLong_blue.png","data/Fonts/Kenney Rocket.ttf");
     list.insertValue({"easy","medium","hard"});
 
-    color_l.load("data/ColorPalettes/joy.color");
+    color_l.load("data/ColorPalettes/dark_purple.color");
 
-    welcomwtext.text->setColor(color_l.getColor(color_loader::good));
+    welcomwtext.text->setColor(color_l.getColor(color_loader::background2));
 
     }
 
