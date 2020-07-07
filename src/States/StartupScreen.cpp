@@ -6,11 +6,12 @@
 
 StartupScreen::StartupScreen(Statemachine *st, sf::RenderWindow &sf_window) : State(st){
     m_window = &sf_window;
+    color_l.load("data/ColorPalettes/harmonic2.color");
     //m_window->create(sf::VideoMode::getDesktopMode(),"sda0");
     welcomwtext.text->start(float(m_window->getSize().y*0.04),"Welcome to SpaceRace","data/Fonts/Kenney Rocket.ttf",sf::Color::Green);
     welcomwtext.transform->setPosition(float(m_window->getSize().x*0.15),0.f);
-    buttontest.start(*m_window,{float(m_window->getSize().x*0.5),float(m_window->getSize().y*0.2)},{m_window->getSize().x*0.2f,m_window->getSize().x*0.1f},"data/Fonts/Kenney Rocket.ttf","data/UI/buttonLong_blue.png","Start");
-    namefield.start(*m_window,{float(m_window->getSize().x*0.3),float(m_window->getSize().y*0.2)},{m_window->getSize().x*0.2f,m_window->getSize().x*0.1f},"data/Fonts/Kenney Rocket.ttf","data/UI/buttonLong_blue.png","Start");
+    buttontest.start(*m_window,&color_l,{float(m_window->getSize().x*0.5),float(m_window->getSize().y*0.2)},{m_window->getSize().x*0.2f,m_window->getSize().x*0.1f},"data/Fonts/Kenney Rocket.ttf","data/UI/buttonLong_blue.png","Start");
+    namefield.start(*m_window,&color_l,{float(m_window->getSize().x*0.3),float(m_window->getSize().y*0.2)},{m_window->getSize().x*0.2f,m_window->getSize().x*0.1f},"data/Fonts/Kenney Rocket.ttf","data/UI/buttonLong_blue.png","Start");
 
     background.start(sf_window,"data/Background/space-1.png");
     namefield.setTextColor(sf::Color::Blue);
@@ -19,13 +20,9 @@ StartupScreen::StartupScreen(Statemachine *st, sf::RenderWindow &sf_window) : St
     sprite.transform->setPosition({float(m_window->getSize().x*0.35),float(m_window->getSize().y*0.35)});
     sprite.animation->start(sprite.body);
     sprite.animation->configureTextureAtlas("data/AnimationAtlas/asteroid_grey_atlas.png",{3,5},0.1f);
-    list.start(sf_window,{m_window->getSize().x/2.f-m_window->getSize().x*0.13f,m_window->getSize().y*0.7f},{m_window->getSize().x*0.3f,m_window->getSize().y*0.1f},"data/UI/arrowBlue_left.png","data/UI/arrowBlue_right.png","data/UI/buttonLong_blue.png","data/Fonts/Kenney Rocket.ttf");
+    list.start(sf_window,&color_l,{m_window->getSize().x/2.f-m_window->getSize().x*0.13f,m_window->getSize().y*0.7f},{m_window->getSize().x*0.3f,m_window->getSize().y*0.1f},"data/UI/arrowBlue_left.png","data/UI/arrowBlue_right.png","data/UI/buttonLong_blue.png","data/Fonts/Kenney Rocket.ttf");
     list.insertValue({"easy","medium","hard"});
-
-    color_l.load("data/ColorPalettes/dark_purple.color");
-
-    welcomwtext.text->setColor(color_l.getColor(color_loader::background2));
-
+    namefield.change_on_hover = false;
     }
 
 void StartupScreen::update(float deltaTime) {
@@ -38,12 +35,12 @@ void StartupScreen::update(float deltaTime) {
     sprite.update(deltaTime);
     welcomwtext.update(deltaTime);
     list.update(deltaTime);
-    if(buttontest.mouse->mouseOver&&name.empty())
-        buttontest.setTextColor(sf::Color::Red);
-    if(buttontest.mouse->mouseOver&&!name.empty())
-        buttontest.setTextColor(sf::Color::Green);
-    if (!buttontest.mouse->mouseOver)
-        buttontest.setTextColor(sf::Color::White);
+    //if(buttontest.mouse->mouseOver&&name.empty())
+    //    buttontest.setTextColor(color_l.getColor(color_loader::bad));
+    //if(buttontest.mouse->mouseOver&&!name.empty())
+    //    buttontest.setTextColor(color_l.getColor(color_loader::good));
+    //if (!buttontest.mouse->mouseOver)
+    //    buttontest.setTextColor(color_l.getColor(color_loader::text));
 }
 
 void StartupScreen::draw(sf::RenderWindow &window) {

@@ -20,8 +20,16 @@ public:
         entities.push_back(&left);
         entities.push_back(&right);
         entities.push_back(&middle);
+        middle.change_on_hover = false;
     }
 
+    void start(sf::RenderWindow& window,color_loader* loader,sf::Vector2f pos,sf::Vector2f size, std::string buttonleft, std::string buttonright,std::string texturemiddle, std::string font)
+    {
+        start(window,pos,size,buttonleft,buttonright,texturemiddle,font);
+        left.setColorLoader(loader);
+        right.setColorLoader(loader);
+        middle.setColorLoader(loader);
+    }
     void update(float deltaTime) override {
         Entity::update(deltaTime);
         left.update(deltaTime);
@@ -32,31 +40,24 @@ public:
         middle.transform->setPosition({transform->getX()+(0.25f*trueSize.x),transform->getY()});
         if(left.hover)
         {
-            left.setTextColor(sf::Color::Green);
             if(left.leftClicked_t)
             {
-                left.setTextColor(sf::Color::Blue);
                 iterator--;
                 if(iterator<0)
                     iterator=0;
             }
-
-        } else
-            left.setTextColor(sf::Color::White);
+        }
 
         if(right.hover)
         {
-            right.setTextColor(sf::Color::Green);
             if(right.leftClicked_t)
             {
-                right.setTextColor(sf::Color::Blue);
                 iterator++;
                 if(iterator>values.size()-1)
                     iterator=values.size()-1;
             }
+        }
 
-        } else
-            right.setTextColor(sf::Color::White);
         if(!values.empty())
             middle.setText(values[iterator]);
     }
@@ -91,6 +92,7 @@ private:
     sf::Vector2f trueSize={0.f,0.f};
     sf::RenderWindow* m_window;
     int iterator=0;
+    color_loader* colorLoader= nullptr;
 };
 
 

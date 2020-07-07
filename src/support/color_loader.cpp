@@ -41,13 +41,13 @@ void color_loader::load(std::string path) {
 }
 
 sf::Color color_loader::getColor(unsigned index) {
-    if(index>m_colors.size()-1)
+    if(index>m_colors.size())
         throw std::runtime_error("color requested out of range!");
     return m_colors[index];
 }
 
 sf::Color color_loader::getColor(color_loader::Purpose purp) {
-    if(purp>m_colors.size()-1)
+    if(purp>m_colors.size())
         throw std::runtime_error("color requested out of range!");
     return m_colors[purp];
 }

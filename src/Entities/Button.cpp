@@ -34,6 +34,19 @@ void Button::update(float deltaTime) {
         rightClicked_t = false;
 
     hover = mouse->mouseOver;
+
+    if(colorLoader!= nullptr)
+    {
+        if(hover&&change_on_hover)
+        {
+            body->getRect().setFillColor(colorLoader->getColor(color_loader::background2));
+            text->setColor(colorLoader->getColor(color_loader::texthighlight));
+        } else
+        {
+            body->getRect().setFillColor(colorLoader->getColor(color_loader::background));
+            text->setColor(colorLoader->getColor(color_loader::text));
+        }
+    }
 }
 
 void Button::start(sf::RenderWindow& window,sf::Vector2f pos, sf::Vector2f size, std::string font_path, std::string background, std::string buttonText) {
@@ -71,6 +84,19 @@ void Button::setTextToMax() {
     {
         text->setTextsize(text->getTextsize()*1.1f);
     }
+}
+
+void Button::setColorLoader(color_loader *loader) {
+    colorLoader = loader;
+    body->getRect().setFillColor(loader->getColor(loader->background));
+    text->setColor(loader->getColor(loader->text));
+}
+
+void
+Button::start(sf::RenderWindow &window, color_loader *loader, sf::Vector2f pos, sf::Vector2f size, std::string font,
+              std::string background, std::string buttonText) {
+    start(window,pos,size,font,background,buttonText);
+    colorLoader = loader;
 }
 
 
