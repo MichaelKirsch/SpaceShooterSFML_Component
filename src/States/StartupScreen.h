@@ -5,6 +5,7 @@
 #include "Entities/Sprite.h"
 #include "Entities/SimpleText.h"
 #include "ToggleList.h"
+#include "support/color_loader.h"
 
 class StartupScreen : public State {
 public:
@@ -17,6 +18,7 @@ public:
     void inputs() override;
 
 private:
+    color_loader color_l;
     ToggleList list;
     SimpleText welcomwtext;
     Button buttontest,namefield;
