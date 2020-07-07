@@ -1,0 +1,8 @@
+{
+  "lock": true,
+  "name": "default",
+  "color_scheme": "dark_purple.color",
+  "gun_type" : "shotgun.json",
+  "sound_volume": 50,
+
+}
