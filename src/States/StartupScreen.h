@@ -6,6 +6,8 @@
 #include "Entities/SimpleText.h"
 #include "ToggleList.h"
 #include "support/color_loader.h"
+#include <SQLiteCpp/SQLiteCpp.h>
+
 
 class StartupScreen : public State {
 public:

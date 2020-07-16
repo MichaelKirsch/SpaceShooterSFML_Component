@@ -27,7 +27,10 @@ StartupScreen::StartupScreen(Statemachine *st, sf::RenderWindow &sf_window) : St
 
     namefield.change_on_hover = false;
     welcomwtext.setColorLoader(&color_l);
-    //welcomwtext.highlight(true);
+
+    SQLite::Database db("data/database.db",SQLite::OPEN_READWRITE|SQLite::OPEN_CREATE);
+    std::cout << "SQLite database file '" << db.getFilename().c_str() << "' opened successfully\n";
+
     }
 
 void StartupScreen::update(float deltaTime) {
@@ -46,7 +49,6 @@ void StartupScreen::update(float deltaTime) {
         welcomwtext.highlight(true);
         color_l.load("data/ColorPalettes/"+colorschemes.getCurrentValue()+".color");
     }
-
 }
 
 void StartupScreen::draw(sf::RenderWindow &window) {
@@ -70,7 +72,6 @@ void StartupScreen::draw(sf::RenderWindow &window) {
             else
                 name+=static_cast<char>(e.text.unicode);
         }
-
 }
 
 void StartupScreen::inputs() {
@@ -82,5 +83,3 @@ void StartupScreen::inputs() {
         stm->setNextState(z);
     }
 }
-
-
